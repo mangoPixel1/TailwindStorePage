@@ -36,14 +36,14 @@ function Featured() {
 			{/* Darken overlay */}
 			<div className="absolute inset-0 bg-black opacity-50"></div>
 
-			{!isLoading ? (
+			{isLoading ? (
+				<h1>Loading ...</h1>
+			) : (
 				<div className="flex flex-col justify-center items-start relative z-10">
 					<h1 className="text-3xl  font-extrabold">{featuredProduct && featuredProduct.title}</h1>
 					<p className="py-3 text-sm text-slate-400">{featuredProduct && featuredProduct.description}</p>
 					<button className="px-5 py-2 text-slate-200 bg-slate-600 transition duration-350 hover:bg-slate-700 rounded-sm cursor-pointer">Shop Now</button>
 				</div>
-			) : (
-				<h1>Loading ...</h1>
 			)}
 		</section>
 	);

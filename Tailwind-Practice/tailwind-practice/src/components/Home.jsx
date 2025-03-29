@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 // Components
 import Featured from "./Featured";
 import Categories from "./Categories";
+import CategoriesA from "./CategoriesA";
 
 function Home() {
 	const perks = [
@@ -42,3 +43,4 @@ function Home() {
 }
 
 export default Home;
+// <CategoriesB />

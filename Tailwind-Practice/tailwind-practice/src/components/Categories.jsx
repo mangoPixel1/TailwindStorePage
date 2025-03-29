@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 function Categories() {
 	const [categories, setCategories] = useState([]);
-	const [products, setProducts] = useState([]);
 
 	useEffect(() => {
 		fetch(`https://fakestoreapi.com/products`)
@@ -45,14 +44,16 @@ function Categories() {
 	}, []);
 
 	return (
-		<section className="px-15 pt-5 pb-20 sm:px-20 md:px-25 lg:px-30 xl:px-40 2xl:px-55">
+		<section className="px-5 pt-5 pb-20 lg:px-10">
 			<h1 className="mb-5 font-bold text-2xl">Shop by category</h1>
-			<div className="flex flex-wrap justify-center gap-5">
+			<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
 				{categories &&
 					categories.map((cat, index) => (
-						<div className="flex flex-col justify-between align-center text-center w-40 h-40 border-2 border-solid" key={index}>
-							<img className="h-30" src={cat.image} />
-							<span>{cat.name}</span>
+						<div className="py-4 w-full h-40 flex flex-col justify-between items-center text-center rounded-sm bg-gray-50 drop-shadow-sm hover:drop-shadow-md transition duration-300" key={index}>
+							<div>
+								<img className="w-28 h-28 object-contain" src={cat.image} />
+								<span>{cat.name}</span>
+							</div>
 						</div>
 					))}
 			</div>
@@ -61,7 +62,3 @@ function Categories() {
 }
 
 export default Categories;
-
-// use circular images for categories
-// <img src={cat.image} />
-// <span>{cat.name}</span>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Header() {
 	const [categories, setCategories] = useState([]);
@@ -30,7 +31,9 @@ function Header() {
 	return (
 		<header className="flex justify-between items-baseline flex-col gap-y-4 lg:flex-row bg-slate-500 p-6 text-slate-100">
 			<div className="flex items-center">
-				<h1 className="text-slate-200 text-2xl font-bold mr-10">Fake Store</h1>
+				<h1 className="text-slate-200 text-2xl font-bold mr-10">
+					<Link to="/">FakeStore</Link>
+				</h1>
 				<nav>
 					<ul className="flex  flex-wrap space-x-5">
 						{categories.map((cat, index) => (
@@ -43,10 +46,18 @@ function Header() {
 			</div>
 
 			<div className="flex items-center space-x-3">
-				<span className="cursor-pointer hover:text-slate-200">Search</span>
-				<span className="cursor-pointer hover:text-slate-200">Account</span>
-				<span className="cursor-pointer hover:text-slate-200">Favorites</span>
-				<span className="cursor-pointer hover:text-slate-200">Cart</span>
+				<span className="cursor-pointer hover:text-slate-200">
+					<Link to="search">Search</Link>
+				</span>
+				<span className="cursor-pointer hover:text-slate-200">
+					<Link to="account">Account</Link>
+				</span>
+				<span className="cursor-pointer hover:text-slate-200">
+					<Link to="favorites">Favorites</Link>
+				</span>
+				<span className="cursor-pointer hover:text-slate-200">
+					<Link to="cart">Cart</Link>
+				</span>
 			</div>
 		</header>
 	);

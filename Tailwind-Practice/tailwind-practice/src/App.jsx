@@ -1,16 +1,30 @@
 import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import "./App.css";
 
 // Components
 import Header from "../src/components/Header";
-import Home from "./components/Home";
 import Footer from "./components/Footer";
+
+// Pages
+import Home from "./components/pages/Home";
+import Search from "./components/pages/Search";
+import Account from "./components/pages/Account";
+import Favorites from "./components/pages/Favorites";
+import Cart from "./components/pages/Cart";
 
 function App() {
 	return (
 		<div className="flex flex-col min-h-screen">
 			<Header />
-			<Home />
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/search" element={<Search />} />
+				<Route path="/account" element={<Account />} />
+				<Route path="/favorites" element={<Favorites />} />
+				<Route path="/cart" element={<Cart />} />
+			</Routes>
 			<Footer />
 		</div>
 	);

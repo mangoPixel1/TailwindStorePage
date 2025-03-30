@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 
 // Components
-import Featured from "./Featured";
-import Categories from "./Categories";
-import CategoriesA from "./CategoriesA";
+import Featured from "../Featured";
+import Categories from "../Categories";
 
 function Home() {
 	const perks = [
@@ -43,4 +42,3 @@ function Home() {
 }
 
 export default Home;
-// <CategoriesB />

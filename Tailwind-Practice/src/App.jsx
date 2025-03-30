@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 // Pages
 import Home from "./components/pages/Home";
 import Search from "./components/pages/Search";
+import Login from "./components/pages/Login";
 import Account from "./components/pages/Account";
 import Favorites from "./components/pages/Favorites";
 import Cart from "./components/pages/Cart";
@@ -21,8 +22,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/search" element={<Search />} />
-				<Route path="/account" element={<Account />} />
-				<Route path="/favorites" element={<Favorites />} />
+				<Route path="/login" element={<Login />} />
 				<Route path="/cart" element={<Cart />} />
 			</Routes>
 			<Footer />
@@ -31,3 +31,8 @@ function App() {
 }
 
 export default App;
+
+/*
+<Route path="/account" element={<Account />} />
+				<Route path="/favorites" element={<Favorites />} />
+*/

@@ -32,7 +32,7 @@ function Header() {
 		<header className="flex justify-between items-baseline flex-col gap-y-4 lg:flex-row bg-slate-500 p-6 text-slate-100">
 			<div className="flex items-center">
 				<h1 className="text-slate-200 text-2xl font-bold mr-10">
-					<Link to="/">FakeStore</Link>
+					<Link to="/">Fake Store</Link>
 				</h1>
 				<nav>
 					<ul className="flex  flex-wrap space-x-5">
@@ -44,16 +44,12 @@ function Header() {
 					</ul>
 				</nav>
 			</div>
-
 			<div className="flex items-center space-x-3">
 				<span className="cursor-pointer hover:text-slate-200">
 					<Link to="search">Search</Link>
 				</span>
 				<span className="cursor-pointer hover:text-slate-200">
-					<Link to="account">Account</Link>
-				</span>
-				<span className="cursor-pointer hover:text-slate-200">
-					<Link to="favorites">Favorites</Link>
+					<Link to="login">Sign in</Link>
 				</span>
 				<span className="cursor-pointer hover:text-slate-200">
 					<Link to="cart">Cart</Link>
@@ -64,3 +60,12 @@ function Header() {
 }
 
 export default Header;
+
+/*
+<span className="cursor-pointer hover:text-slate-200">
+					<Link to="account">Account</Link>
+				</span>
+				<span className="cursor-pointer hover:text-slate-200">
+					<Link to="favorites">Favorites</Link>
+				</span>
+*/

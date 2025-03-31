@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Featured() {
 	const [products, setProducts] = useState([]);
@@ -42,7 +43,9 @@ function Featured() {
 				<div className="flex flex-col justify-center items-start relative z-10">
 					<h1 className="text-3xl  font-extrabold">{featuredProduct && featuredProduct.title}</h1>
 					<p className="py-3 text-sm text-slate-400">{featuredProduct && featuredProduct.description}</p>
-					<button className="px-5 py-2 text-slate-200 bg-slate-600 transition duration-350 hover:bg-slate-700 rounded-sm cursor-pointer">Shop Now</button>
+					<button className="px-5 py-2 text-slate-200 bg-slate-600 transition duration-350 hover:bg-slate-700 rounded-sm cursor-pointer">
+						<Link to="categories">Shop Now</Link>
+					</button>
 				</div>
 			)}
 		</section>

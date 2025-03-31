@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Categories() {
 	const [categories, setCategories] = useState([]);
@@ -49,12 +50,14 @@ function Categories() {
 			<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
 				{categories &&
 					categories.map((cat, index) => (
-						<div className="py-4 w-full h-40 flex flex-col justify-between items-center text-center rounded-sm bg-gray-50 drop-shadow-sm hover:drop-shadow-md transition duration-300" key={index}>
-							<div>
-								<img className="w-28 h-28 object-contain" src={cat.image} />
-								<span>{cat.name}</span>
+						<Link to="categories" key={index}>
+							<div className="py-4 w-full h-40 flex flex-col justify-between items-center text-center rounded-sm bg-gray-50 drop-shadow-sm hover:drop-shadow-md transition duration-300" key={index}>
+								<div>
+									<img className="w-28 h-28 object-contain" src={cat.image} />
+									<span>{cat.name}</span>
+								</div>
 							</div>
-						</div>
+						</Link>
 					))}
 			</div>
 		</section>

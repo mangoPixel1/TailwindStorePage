@@ -8,6 +8,7 @@ import Header from "../src/components/Header";
 import Footer from "./components/Footer";
 
 // Pages
+import NotFound from "./components/pages/NotFound";
 import Home from "./components/pages/Home";
 import Search from "./components/pages/Search";
 import Login from "./components/pages/Login";
@@ -24,6 +25,7 @@ function App() {
 				<Route path="/search" element={<Search />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/cart" element={<Cart />} />
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 			<Footer />
 		</div>

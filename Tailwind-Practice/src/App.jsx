@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 // Pages
 import NotFound from "./components/pages/NotFound";
 import Home from "./components/pages/Home";
+import CategoryPage from "./components/pages/CategoryPage";
 import Search from "./components/pages/Search";
 import Login from "./components/pages/Login";
 import Account from "./components/pages/Account";
@@ -25,6 +26,7 @@ function App() {
 				<Route path="/search" element={<Search />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/cart" element={<Cart />} />
+				<Route path="/category/:category" element={<CategoryPage />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 			<Footer />

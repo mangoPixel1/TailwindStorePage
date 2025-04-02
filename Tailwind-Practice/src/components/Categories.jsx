@@ -37,7 +37,7 @@ function Categories() {
 					categoryData.push(newCategoryEntry);
 				});
 
-				console.log(categoryData);
+				//console.log(categoryData);
 
 				setCategories(categoryData);
 			})
@@ -50,7 +50,7 @@ function Categories() {
 			<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
 				{categories &&
 					categories.map((cat, index) => (
-						<Link to="categories" key={index}>
+						<Link to={`category/${cat.name.toLowerCase()}`} key={index}>
 							<div className="py-4 w-full h-40 flex flex-col justify-between items-center text-center rounded-sm bg-gray-50 drop-shadow-sm hover:drop-shadow-md transition duration-300" key={index}>
 								<div>
 									<img className="w-28 h-28 object-contain" src={cat.image} />

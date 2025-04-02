@@ -38,7 +38,7 @@ function Header() {
 					<ul className="flex  flex-wrap space-x-5">
 						{categories.map((cat, index) => (
 							<li key={index} className="cursor-pointer hover:text-slate-200">
-								<Link to="categories">{cat}</Link>
+								<Link to={`category/${cat.toLowerCase()}`}>{cat}</Link>
 							</li>
 						))}
 					</ul>

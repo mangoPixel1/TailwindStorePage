@@ -9,35 +9,52 @@ function Home() {
 		{
 			id: 1,
 			title: "Free Shipping",
-			text: "Orders over $50"
+			text: "Orders over $50",
+			icon: "/icons/shipping-icon.png",
+			alt: "Shipping icon"
 		},
 		{
 			id: 2,
 			title: "Easy Returns",
-			text: "30 days after purchase"
+			text: "30 days after purchase",
+			icon: "/icons/return-icon.png",
+			alt: "Return icon"
 		},
 		{
 			id: 3,
+			title: "Secure Payment",
+			text: "Encrypted checkout",
+			icon: "/icons/payment-icon.png",
+			alt: "Payment icon"
+		},
+		{
+			id: 4,
 			title: "24/7 Support",
-			text: "Customer support"
+			text: "Customer support",
+			icon: "/icons/support-icon.png",
+			alt: "Support icon"
 		}
 	];
 
 	return (
 		<>
-			<section className="flex justify-center align-middle px-5 py-20 sm:px-10 md:px-40 md:py-50 lg:h-screen bg-gray-500">
-				<div className="flex flex-col gap-5 text-center text-slate-100 w-full md:w-lg">
+			<section className="flex justify-center align-middle relative px-5 py-20 sm:px-10 md:px-40 md:py-50 lg:h-screen bg-center bg-no-repeat" style={{ backgroundImage: `url(https://images.unsplash.com/photo-1513521712264-512ceb91a940?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)` }}>
+				<div className="flex flex-col gap-5 relative z-10 text-center text-slate-100 w-full md:w-lg">
 					<p className="tracking-wider text-lg">WELCOME TO FAKE STORE</p>
-					<h1 className="text-4xl font-bold md:text-5xl lg:text-6xl">Nothing's Real. Except Your Desire To Shop</h1>
+					<h1 className="text-4xl font-semibold md:text-5xl lg:text-6xl">Nothing's Real. Except Your Desire To Shop</h1>
 					<button className="px-5 py-3 self-center rounded-sm text-slate-100 bg-slate-600 transition duration-350 hover:bg-slate-700 cursor-pointer">Treat Yo Self Anyway</button>
 				</div>
+				<div className="absolute inset-0 bg-black opacity-50"></div>
 			</section>
 			<section className="w-full bg-slate-100">
-				<div className="py-30 mx-10 gap-5 flex flex-col justify-center items-center sm:flex-row sm:gap-10">
+				<div className="py-20 mx-10 gap-5 flex flex-col justify-center items-center sm:flex-row sm:gap-10">
 					{perks.map(perk => (
-						<div key={perk.id} className="bg-slate-50 w-50 h-20 flex flex-col justify-center items-center border-2 border-solid border-indigo-900 text-center p-4">
-							<h3 className="font-semibold">{perk.title}</h3>
-							<span className="text-sm">{perk.text}</span>
+						<div key={perk.id} className="flex flex-col gap-4 justify-start items-center text-center p-4">
+							<img src={perk.icon} alt={perk.alt} width="45" height="45" />
+							<div>
+								<h3 className="font-medium text-lg">{perk.title}</h3>
+								<span className="text-sm">{perk.text}</span>
+							</div>
 						</div>
 					))}
 				</div>

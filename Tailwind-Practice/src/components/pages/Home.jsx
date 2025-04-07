@@ -30,7 +30,7 @@ function Home() {
 		{
 			id: 4,
 			title: "24/7 Support",
-			text: "Customer support",
+			text: "Ready to help",
 			icon: "/icons/support-icon.png",
 			alt: "Support icon"
 		}
@@ -49,11 +49,13 @@ function Home() {
 			<section className="w-full bg-slate-100">
 				<div className="py-20 mx-10 gap-5 flex flex-col justify-center items-center sm:flex-row sm:gap-10">
 					{perks.map(perk => (
-						<div key={perk.id} className="flex flex-col gap-4 justify-start items-center text-center p-4">
-							<img src={perk.icon} alt={perk.alt} width="45" height="45" />
+						<div key={perk.id} className="flex flex-col gap-4 justify-start items-center text-center p-6">
+							<div className="flex items-center justify-center w-16 h-16 bg-slate-200 rounded-full p-3">
+								<img src={perk.icon} alt={perk.alt} width="45" height="45" />
+							</div>
 							<div>
 								<h3 className="font-medium text-lg">{perk.title}</h3>
-								<span className="text-sm">{perk.text}</span>
+								<span className="text-sm text-slate-600">{perk.text}</span>
 							</div>
 						</div>
 					))}
@@ -66,8 +68,9 @@ function Home() {
 }
 
 export default Home;
-
 /*
+Featured component idea: trending products carousel with three random products to display
+
 Inspiration: https://websitedemos.net/generic-ecommerce-02/?customize=template
 Sections to add:
 	More perks with icons: secure payment, excellent service

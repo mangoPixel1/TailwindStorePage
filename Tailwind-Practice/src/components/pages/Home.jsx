@@ -46,16 +46,16 @@ function Home() {
 				</div>
 				<div className="absolute inset-0 bg-black opacity-50"></div>
 			</section>
-			<section className="w-full bg-slate-100">
-				<div className="py-20 mx-10 gap-5 flex flex-col justify-center items-center sm:flex-row sm:gap-10">
+			<section className="flex justify-center items-center w-full bg-slate-100">
+				<div className="px-5 py-20 max-w-7xl grid grid-cols-2 gap-5 sm:grid-cols-4 sm:gap-10">
 					{perks.map(perk => (
-						<div key={perk.id} className="flex flex-col gap-4 justify-start items-center text-center p-6">
+						<div key={perk.id} className="flex flex-col gap-4 justify-start items-center text-center px-6 py-0">
 							<div className="flex items-center justify-center w-16 h-16 bg-slate-200 rounded-full p-3">
 								<img src={perk.icon} alt={perk.alt} width="45" height="45" />
 							</div>
 							<div>
-								<h3 className="font-medium text-lg">{perk.title}</h3>
-								<span className="text-sm text-slate-600">{perk.text}</span>
+								<h3 className="font-medium text-md sm:text-lg">{perk.title}</h3>
+								<span className="text-xs sm:text-sm text-slate-600">{perk.text}</span>
 							</div>
 						</div>
 					))}
@@ -68,6 +68,9 @@ function Home() {
 }
 
 export default Home;
+
+// Nothing's Real. Except Your Desire To Shop
+
 /*
 Featured component idea: trending products carousel with three random products to display
 

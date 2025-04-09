@@ -23,7 +23,7 @@ function Categories() {
 					return name.charAt(0).toUpperCase() + name.slice(1);
 				});
 
-				console.log(names);
+				//console.log(names);
 
 				// Loop through products and find first matching product for each category
 				let categoryData = [];

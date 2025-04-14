@@ -44,14 +44,14 @@ function Categories() {
 	}, []);
 
 	return (
-		<section className="px-5 pt-5 pb-20 lg:px-10">
-			<h1 className="mb-5 font-bold text-2xl">Shop by category</h1>
-			<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+		<section className="px-8 py-15 lg:px-10">
+			<h1 className="mb-5 font-semibold text-3xl lg:text-4xl text-center">Shop by Category</h1>
+			<div className="grid grid-cols-1 md:grid-cols-4 gap-4">
 				{categories &&
 					categories.map((cat, index) => (
 						<Link to={`category/${cat.name.toLowerCase()}`} key={index}>
-							<div className="flex flex-col items-center py-8 lg:py-12 rounded-sm bg-gray-50 drop-shadow-sm hover:drop-shadow-md transition duration-300" key={index}>
-								<img className="w-28 h-28 lg:w-36 lg:h-36 object-contain" src={cat.image} />
+							<div className="flex flex-col items-center px-5 py-8 lg:py-12" key={index}>
+								<img className="w-full max-w-72 max-h-72 md:max-w-48 md:max-h-48 object-contain" src={cat.image} />
 								<span>{cat.name}</span>
 							</div>
 						</Link>
@@ -63,23 +63,23 @@ function Categories() {
 
 export default Categories;
 
-/* 
+/*
+
 return (
-		<section className="px-5 pt-5 pb-20 lg:px-10">
-			<h1 className="mb-5 font-bold text-2xl">Shop by category</h1>
-			<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+		<section className="px-5 py-15 lg:px-10">
+			<h1 className="mb-5 font-semibold text-3xl text-center">Shop by Category</h1>
+			<div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
 				{categories &&
 					categories.map((cat, index) => (
 						<Link to={`category/${cat.name.toLowerCase()}`} key={index}>
-							<div className="py-4 w-full h-40 lg:h-52 flex flex-col justify-between items-center text-center rounded-sm bg-gray-50 drop-shadow-sm hover:drop-shadow-md transition duration-300" key={index}>
-								<div>
-									<img className="w-28 h-28 object-contain" src={cat.image} />
-									<span>{cat.name}</span>
-								</div>
+							<div className="flex flex-col items-center py-8 lg:py-12" key={index}>
+								<img className="w-72 h-72 lg:w-36 lg:h-48 object-contain" src={cat.image} />
+								<span>{cat.name}</span>
 							</div>
 						</Link>
 					))}
 			</div>
 		</section>
 	);
+
 */

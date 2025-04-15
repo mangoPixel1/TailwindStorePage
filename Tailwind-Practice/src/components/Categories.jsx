@@ -45,14 +45,14 @@ function Categories() {
 
 	return (
 		<section className="px-8 py-15 lg:px-10">
-			<h1 className="mb-5 font-semibold text-3xl lg:text-4xl text-center">Shop by Category</h1>
-			<div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+			<h1 className="text-slate-800 mb-15 lg:mb-10 font-semibold text-3xl lg:text-4xl text-center">Shop by Category</h1>
+			<div className="grid grid-cols-1 gap-14 md:grid-cols-4 md:gap-10">
 				{categories &&
 					categories.map((cat, index) => (
 						<Link to={`category/${cat.name.toLowerCase()}`} key={index}>
-							<div className="flex flex-col items-center px-5 py-8 lg:py-12" key={index}>
+							<div className="flex flex-col items-center gap-5 px-5 py-0 lg:py-12" key={index}>
 								<img className="w-full max-w-72 max-h-72 md:max-w-48 md:max-h-48 object-contain" src={cat.image} />
-								<span>{cat.name}</span>
+								<span className="text-slate-700 text-lg font-medium">{cat.name}</span>
 							</div>
 						</Link>
 					))}
@@ -62,24 +62,3 @@ function Categories() {
 }
 
 export default Categories;
-
-/*
-
-return (
-		<section className="px-5 py-15 lg:px-10">
-			<h1 className="mb-5 font-semibold text-3xl text-center">Shop by Category</h1>
-			<div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-				{categories &&
-					categories.map((cat, index) => (
-						<Link to={`category/${cat.name.toLowerCase()}`} key={index}>
-							<div className="flex flex-col items-center py-8 lg:py-12" key={index}>
-								<img className="w-72 h-72 lg:w-36 lg:h-48 object-contain" src={cat.image} />
-								<span>{cat.name}</span>
-							</div>
-						</Link>
-					))}
-			</div>
-		</section>
-	);
-
-*/

@@ -63,6 +63,29 @@ function Home() {
 			</section>
 			<Featured />
 			<Categories />
+			<section className="mb-10 px-6 py-16 bg-slate-300">
+				<div className="flex flex-col justify-center items-center max-w-6xl mx-auto gap-10 lg:gap-25 md:flex-row">
+					<div className="flex justify-center max-w-xl md:max-w-1/2">
+						<div>
+							<img src="checkout.jpg" alt="customer receiving purchase" />
+						</div>
+					</div>
+
+					<div className="flex flex-col justify-center">
+						<h1 className="mb-5 text-slate-900 text-3xl lg:text-4xl font-semibold">Your One-Stop Shop for Style & Innovation.</h1>
+						<p className="text-sm lg:text-base text-slate-800 leading-5">At Fake Store, we bring together fashion and tech to elevate your everyday. Whether you’re upgrading your wardrobe, finding the perfect accessory, or leveling up your gadgets, our curated collection has something for everyone.</p>
+						<hr className="my-8 border-t border-slate-400" />
+						<div className="mb-3">
+							<h2 className="text-2xl mb-2 font-semibold">98%</h2>
+							<h3 className="text-sm text-slate-800">Customer Satisfaction</h3>
+						</div>
+						<div>
+							<h2 className="text-2xl mb-2 font-semibold">85K</h2>
+							<h3 className="text-sm text-slate-800">Products Delivered</h3>
+						</div>
+					</div>
+				</div>
+			</section>
 		</>
 	);
 }
@@ -76,10 +99,10 @@ Featured component idea: trending products carousel with three random products t
 
 Inspiration: https://websitedemos.net/generic-ecommerce-02/?customize=template
 Sections to add:
-	More perks with icons: secure payment, excellent service
-	Trending products
-	Categories with larger images and not bg/border
-	Small about section with sales stats (103k products sold, 98% customer satisfaction)
-	Trending products
+	DONE: More perks with icons: secure payment, excellent service
+	DONE: Trending products
+	DONE: Categories with larger images and not bg/border
+	DONE: Small about section with sales stats (103k products sold, 98% customer satisfaction)
 	Customer feedback, include quote icon and customer profile pic
+	"Shop now" call to action hero at bottom of page above footer
 */

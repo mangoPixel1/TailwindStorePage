@@ -62,7 +62,6 @@ function Home() {
 				</div>
 			</section>
 			<Featured />
-			<Categories />
 			<section className="mb-10 px-6 py-16 bg-slate-300">
 				<div className="flex flex-col justify-center items-center max-w-6xl mx-auto gap-10 lg:gap-25 md:flex-row">
 					<div className="flex justify-center max-w-xl md:max-w-1/2">
@@ -82,6 +81,39 @@ function Home() {
 						<div>
 							<h2 className="text-2xl mb-2 font-semibold">85K</h2>
 							<h3 className="text-sm text-slate-800">Products Delivered</h3>
+						</div>
+					</div>
+				</div>
+			</section>
+			<Categories />
+			<section className="bg-slate-300">
+				<div className="grid grid-cols-1 gap-10">
+					<div>
+						<h1 className="mb-2 font-semibold text-3xl">What Our Customers Say</h1>
+						<p className="text-sm text-slate-800 leading-5">Discover the reasons why people loves us and become your go-to partner.</p>
+					</div>
+					<div className="bg-slate-50">
+						<h3>Finally, a store that understands me.</h3>
+						<p>No products, no shipping, no stress. It's like retail therapy, without the retail. Or the therapy.</p>
+						<div>
+							<img src="profile-pic-1" />
+							<span>John Doe</span>
+						</div>
+					</div>
+					<div className="bg-slate-50">
+						<h3>Bought everything. Literally nothing arrived.</h3>
+						<p>Zero regrets. My style has never been so conceptually on point.</p>
+						<div>
+							<img src="#" />
+							<span>Jane Doe</span>
+						</div>
+					</div>
+					<div className="bg-slate-50">
+						<h3>Their jewelry? Fake. Just like this store.</h3>
+						<p>And yet... I feel emotionally richer. Would pretend-shop again!</p>
+						<div>
+							<img src="#" />
+							<span>John Doe</span>
 						</div>
 					</div>
 				</div>

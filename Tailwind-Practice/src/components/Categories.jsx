@@ -46,7 +46,7 @@ function Categories() {
 	return (
 		<section className="px-8 py-15 lg:px-10">
 			<h1 className="text-slate-800 mb-15 lg:mb-10 font-semibold text-3xl lg:text-4xl text-center">Shop by Category</h1>
-			<div className="grid grid-cols-1 gap-14 md:grid-cols-4 md:gap-10">
+			<div className="grid grid-cols-1 gap-14 md:grid-cols-4 md:gap-10 lg:max-w-3/4 lg:mx-auto">
 				{categories &&
 					categories.map((cat, index) => (
 						<Link to={`category/${cat.name.toLowerCase()}`} key={index}>

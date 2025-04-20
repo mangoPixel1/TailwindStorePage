@@ -36,6 +36,30 @@ function Home() {
 		}
 	];
 
+	const testimonials = [
+		{
+			id: 1,
+			title: "Finally, a store that understands me.",
+			body: "No products, no shipping, no stress. It's like retail therapy, without the retail. Or the therapy.",
+			user: "John Doe",
+			image: "profile-pic-1.jpg"
+		},
+		{
+			id: 2,
+			title: "Bought everything. Literally nothing arrived.",
+			body: "Zero regrets. My style has never been so conceptually on point.",
+			user: "Jane Doe",
+			image: "profile-pic-2.jpg"
+		},
+		{
+			id: 3,
+			title: "Their jewelry? Fake. Just like this store.",
+			body: "And yet... I feel emotionally richer. Would pretend-shop again!",
+			user: "Jack Doe",
+			image: "profile-pic-3.jpg"
+		},
+	];
+
 	return (
 		<>
 			<section className="flex justify-center align-middle relative px-5 py-20 sm:px-10 md:px-40 md:py-50 lg:h-screen bg-center bg-no-repeat" style={{ backgroundImage: `url(https://images.unsplash.com/photo-1513521712264-512ceb91a940?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)` }}>
@@ -86,36 +110,23 @@ function Home() {
 				</div>
 			</section>
 			<Categories />
-			<section className="bg-slate-300">
-				<div className="grid grid-cols-1 gap-10">
+			<section className="flex justify-center py-18 bg-slate-300">
+				<div className="mx-6 lg:max-w-4/5 grid grid-cols-1 sm:grid-cols-2 gap-10">
 					<div>
 						<h1 className="mb-2 font-semibold text-3xl">What Our Customers Say</h1>
-						<p className="text-sm text-slate-800 leading-5">Discover the reasons why people loves us and become your go-to partner.</p>
+						<p className="text-sm font-light text-slate-800 leading-5">See why people are raving about us</p>
 					</div>
-					<div className="bg-slate-50">
-						<h3>Finally, a store that understands me.</h3>
-						<p>No products, no shipping, no stress. It's like retail therapy, without the retail. Or the therapy.</p>
-						<div>
-							<img src="profile-pic-1" />
-							<span>John Doe</span>
+					{testimonials.map((review) => (
+						<div className="p-5 rounded-lg bg-slate-50" key={review.id}>
+							<img className="pb-5" src="/icons/quote-icon.png" alt="Quote icon" width={25} height={25} />
+							<h3 className="text-xl text-slate-800 font-medium">{review.title}</h3>
+							<p className="text-md text-slate-700 font-light">{review.body}</p>
+							<div className="flex items-center gap-3 mt-4">
+								<img className="rounded-full" width={50} height={50} src={review.image} alt="Customer Photo" />
+								<span className="text-md text-slate-700 font-light">{review.user}</span>
+							</div>
 						</div>
-					</div>
-					<div className="bg-slate-50">
-						<h3>Bought everything. Literally nothing arrived.</h3>
-						<p>Zero regrets. My style has never been so conceptually on point.</p>
-						<div>
-							<img src="#" />
-							<span>Jane Doe</span>
-						</div>
-					</div>
-					<div className="bg-slate-50">
-						<h3>Their jewelry? Fake. Just like this store.</h3>
-						<p>And yet... I feel emotionally richer. Would pretend-shop again!</p>
-						<div>
-							<img src="#" />
-							<span>John Doe</span>
-						</div>
-					</div>
+					))}
 				</div>
 			</section>
 		</>

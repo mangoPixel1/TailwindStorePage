@@ -110,7 +110,62 @@ function Home() {
 				</div>
 			</section>
 			<Categories />
-			<section className="flex justify-center py-18 bg-slate-300">
+			<section className="flex justify-center items-center py-18 bg-slate-300">
+				<div className="mx-6 grid grid-cols-1 sm:grid-cols-2 lg:max-w-5xl gap-10">
+					<div className="flex flex-col gap-20">
+						<div>
+							<h1 className="mb-2 font-semibold text-3xl">What Our Customers Say</h1>
+							<p className="text-sm font-light text-slate-800 leading-5">See why people are raving about us</p>
+						</div>
+						<div className="p-5 lg:p-10 rounded-lg bg-slate-50">
+								<img className="pb-5" src="/icons/quote-icon.png" alt="Quote icon" width={35} height={35} />
+								<h3 className="text-xl text-slate-800 font-medium mb-3">Finally, a store that understands me.</h3>
+								<p className="text-md text-slate-700 font-light">No products, no shipping, no stress. It's like retail therapy, without the retail. Or the therapy.</p>
+								<div className="flex items-center gap-3 mt-4">
+									<img className="rounded-full" width={60} height={60} src="profile-pic-1.jpg" alt="Customer Photo" />
+									<span className="text-md text-slate-700 font-light">John Doe</span>
+								</div>
+						</div>
+					</div>
+					<div className="flex flex-col gap-10">
+						<div className="p-5 lg:p-10 rounded-lg bg-slate-50">
+							<img className="pb-5" src="/icons/quote-icon.png" alt="Quote icon" width={35} height={35} />
+								<h3 className="text-xl text-slate-800 font-medium mb-3">Bought everything. Literally nothing arrived.</h3>
+								<p className="text-md text-slate-700 font-light">Zero regrets. My style has never been so conceptually on point.</p>
+								<div className="flex items-center gap-3 mt-4">
+									<img className="rounded-full" width={60} height={60} src="profile-pic-2.jpg" alt="Customer Photo" />
+									<span className="text-md text-slate-700 font-light">Jane Doe</span>
+								</div>
+						</div>
+						<div className="p-5 lg:p-10 rounded-lg bg-slate-50">
+							<img className="pb-5" src="/icons/quote-icon.png" alt="Quote icon" width={35} height={35} />
+							<h3 className="text-xl text-slate-800 font-medium mb-3">Their jewelry? Fake. Just like this store.</h3>
+							<p className="text-md text-slate-700 font-light">And yet... I feel emotionally richer. Would pretend-shop again!</p>
+							<div className="flex items-center gap-3 mt-4">
+								<img className="rounded-full" width={60} height={60} src="profile-pic-3.jpg" alt="Customer Photo" />
+								<span className="text-md text-slate-700 font-light">Jack Doe</span>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					
+					
+					
+
+						
+						
+				</div>
+			</section>
+		</>
+	);
+}
+
+export default Home;
+
+/* 
+<section className="flex justify-center py-18 bg-slate-300">
 				<div className="mx-6 lg:max-w-4/5 grid grid-cols-1 sm:grid-cols-2 gap-10">
 					<div>
 						<h1 className="mb-2 font-semibold text-3xl">What Our Customers Say</h1>
@@ -129,13 +184,8 @@ function Home() {
 					))}
 				</div>
 			</section>
-		</>
-	);
-}
+*/
 
-export default Home;
-
-// Nothing's Real. Except Your Desire To Shop
 
 /*
 Featured component idea: trending products carousel with three random products to display

@@ -112,7 +112,7 @@ function Home() {
 			<Categories />
 			<section className="flex justify-center items-center py-18 bg-slate-300">
 				<div className="mx-6 grid grid-cols-1 sm:grid-cols-2 lg:max-w-5xl gap-10">
-					<div className="flex flex-col gap-20">
+					<div className="flex flex-col gap-10 sm:gap-20">
 						<div>
 							<h1 className="mb-2 font-semibold text-3xl">What Our Customers Say</h1>
 							<p className="text-sm font-light text-slate-800 leading-5">See why people are raving about us</p>
@@ -147,17 +147,17 @@ function Home() {
 							</div>
 						</div>
 					</div>
-					
-					
-					
-					
-					
-					
-
-						
-						
 				</div>
 			</section>
+			<section className="relative p-20 text-slate-200 bg-[url(/call-to-action-bottom.jpg)] bg-center bg-cover bg-no-repeat">
+  			<div className="z-20 flex flex-col gap-5 text-center relative">
+    			<h1 className="text-2xl lg:text-3xl font-semibold">Ready to Find Your Perfect Style or Tech?</h1>
+   				<h2 className="text-sm lg:text-base font-light">Browse our online store or visit us in person to discover the latest in fashion, electronics, and fine jewelry.</h2>
+    			<button className="px-5 py-3 self-center rounded-sm text-slate-100 bg-slate-600 transition duration-350 hover:bg-slate-700 cursor-pointer">Shop Now</button>
+  			</div>
+  			<div className="absolute inset-0 bg-black opacity-60 z-10"></div>
+			</section>
+
 		</>
 	);
 }
@@ -188,14 +188,13 @@ export default Home;
 
 
 /*
-Featured component idea: trending products carousel with three random products to display
-
 Inspiration: https://websitedemos.net/generic-ecommerce-02/?customize=template
+
 Sections to add:
 	DONE: More perks with icons: secure payment, excellent service
 	DONE: Trending products
 	DONE: Categories with larger images and not bg/border
 	DONE: Small about section with sales stats (103k products sold, 98% customer satisfaction)
-	Customer feedback, include quote icon and customer profile pic
+	DONE: Tesimonials, include quote icon and customer profile pic
 	"Shop now" call to action hero at bottom of page above footer
 */

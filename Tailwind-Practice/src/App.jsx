@@ -16,22 +16,24 @@ import Login from "./components/pages/Login";
 import Account from "./components/pages/Account";
 import Favorites from "./components/pages/Favorites";
 import Cart from "./components/pages/Cart";
+import ProductPage from "./components/pages/ProductPage";
 
 function App() {
-	return (
-		<div className="flex flex-col min-h-screen">
-			<Header />
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/search" element={<Search />} />
-				<Route path="/login" element={<Login />} />
-				<Route path="/cart" element={<Cart />} />
-				<Route path="/category/:category" element={<CategoryPage />} />
-				<Route path="*" element={<NotFound />} />
-			</Routes>
-			<Footer />
-		</div>
-	);
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/category/:category" element={<CategoryPage />} />
+        <Route path="/product/:product" element={<ProductPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      <Footer />
+    </div>
+  );
 }
 
 export default App;

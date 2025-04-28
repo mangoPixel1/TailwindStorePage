@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
+import { FaRegStarHalfStroke } from "react-icons/fa6";
 
 function Category() {
   let { category } = useParams(); // Extract category name
@@ -73,6 +75,22 @@ function Category() {
                   <span className="font-semibold text-md text-indigo-950">{`$${product.price.toFixed(
                     2
                   )}`}</span>
+                  <div className="flex items-center mt-2 md:mt-0 text-sm text-gray-600">
+                    {Array.from({ length: 5 }, (_, i) => {
+                      const roundedRating =
+                        Math.round(product.rating.rate * 2) / 2;
+                      const starNumber = i + 1;
+                      if (roundedRating >= starNumber) {
+                        return <FaStar key={i} color="#ffc107" />; // yellow star
+                      }
+                      if (roundedRating + 0.5 >= starNumber) {
+                        return <FaRegStarHalfStroke key={i} color="#ffc107" />; // half star
+                      } else {
+                        return <FaStar key={i} color="#e4e5e9" />;
+                      }
+                    })}
+                    <span className="ml-2">{`(${product.rating.count})`}</span>
+                  </div>
                 </div>
               </div>
             ))}

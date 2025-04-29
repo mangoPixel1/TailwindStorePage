@@ -112,32 +112,32 @@ function ProductPage() {
             </div>
           </div>
           <hr className="my-8 border-t border-slate-300" />
-          <div>
-            <div>
-              <h3>{`Reviews (0)`}</h3>
-              <p className="font-lighter text-gray-600">
-                There are no reviews yet.
-              </p>
-            </div>
-            <div className="flex items-center">
+          <div className="mb-15">
+            <h3>{`Reviews (0)`}</h3>
+            <p className="font-lighter text-gray-600">
+              There are no reviews yet.
+            </p>
+          </div>
+          <div className="p-5 border border-slate-300">
+            <div className="mb-4 flex items-center">
               <span className="mr-3">Your rating:</span>
               {Array.from({ length: 5 }, (_, i) => (
                 <FaStar key={i} color="#e4e5e9" />
               ))}
             </div>
-            <div className="flex flex-col">
+            <div className="mb-4 flex flex-col">
               <span>Your review:</span>
               <textarea className="px-3 py-2 h-20 border border-gray-300" />
             </div>
-            <div className="flex flex-col md:flex-row md:gap-5">
-              <div className="flex flex-col w-1/2">
+            <div className="mb-4 flex flex-col md:flex-row md:gap-5">
+              <div className="flex flex-col md:w-1/2">
                 <span>Name</span>
                 <input
                   type="text"
                   className="px-3 py-2 h-10 border border-gray-300"
                 />
               </div>
-              <div className="flex flex-col w-1/2">
+              <div className="flex flex-col md:w-1/2">
                 <span>Email</span>
                 <input
                   type="text"
@@ -145,7 +145,7 @@ function ProductPage() {
                 />
               </div>
             </div>
-            <button className="mt-3 px-3 py-1 self-center rounded-sm text-slate-100 bg-slate-600 transition duration-350 hover:bg-slate-700 cursor-pointer">
+            <button className="px-3 py-1 self-center rounded-sm text-slate-100 bg-slate-600 transition duration-350 hover:bg-slate-700 cursor-pointer">
               Submit
             </button>
           </div>

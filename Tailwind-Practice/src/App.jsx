@@ -20,7 +20,7 @@ import ProductPage from "./components/pages/ProductPage";
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen ">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

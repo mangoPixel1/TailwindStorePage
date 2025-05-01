@@ -40,7 +40,7 @@ function Featured() {
         setFeaturedProducts(featuredArr); // Add the three products to featuredProducts array
         setIsLoading(false);
 
-        console.log(featuredArr);
+        //console.log(featuredArr);
       })
       .catch((error) => console.error(error));
   }, []);

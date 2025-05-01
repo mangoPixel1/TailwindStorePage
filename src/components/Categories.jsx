@@ -64,7 +64,7 @@ function Categories() {
                   />
                 </div>
 
-                <span className="block text-slate-700 text-sm md:text-base font-medium">
+                <span className="capitalize block text-slate-700 text-sm md:text-base font-medium">
                   {cat.name}
                 </span>
               </div>

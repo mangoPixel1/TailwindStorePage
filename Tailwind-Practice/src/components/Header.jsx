@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 function Header() {
   const [categories, setCategories] = useState([]);
+  const [menuIsExpanded, setMenuIsExpanded] = useState(false);
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products`)
@@ -28,6 +29,14 @@ function Header() {
       .catch((error) => console.error(error));
   }, []);
 
+  useEffect(() => {
+    console.log(`menu expanded: ${menuIsExpanded}`);
+  }, [menuIsExpanded]);
+
+  const toggleMenu = () => {
+    setMenuIsExpanded((prev) => !prev);
+  };
+
   return (
     <header className="px-5 md:px-10 py-5 flex justify-center bg-slate-500 text-white">
       <div className="flex items-center justify-between w-full lg:max-w-7xl">
@@ -51,7 +60,10 @@ function Header() {
             </nav>
           </div>
 
-          <button className="min-[800px]:hidden">
+          <button
+            className="min-[800px]:hidden cursor-pointer"
+            onClick={toggleMenu}
+          >
             <svg
               width="20"
               height="20"

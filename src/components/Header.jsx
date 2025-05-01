@@ -30,7 +30,7 @@ function Header() {
   }, []);
 
   useEffect(() => {
-    console.log(`menu expanded: ${menuIsExpanded}`);
+    //console.log(`menu expanded: ${menuIsExpanded}`);
   }, [menuIsExpanded]);
 
   const toggleMenu = () => {

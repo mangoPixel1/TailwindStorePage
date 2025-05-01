@@ -24,7 +24,17 @@ function ProductPage() {
         <div className="lg:max-w-7xl p-5 md:px-10">
           <div className="flex flex-col gap-5 md:gap-10 md:flex-row">
             <div className="md:max-w-1/2">
-              <span className="text-sm text-gray-500">{`Home > ${productData.category} > ${productData.title}`}</span>
+              <div className="text-sm text-gray-500">
+                <span>
+                  <Link to={`/`}>{`Home > `}</Link>
+                </span>
+                <span className="capitalize">
+                  <Link
+                    to={`/category/${productData.category}`}
+                  >{`${productData.category} > `}</Link>
+                </span>
+                <span>{productData.title}</span>
+              </div>
               <div className="aspect-square bg-white mt-5">
                 <img
                   src={productData.image}

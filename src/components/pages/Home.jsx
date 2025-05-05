@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // Components
 import Featured from "../Featured";
@@ -73,9 +74,11 @@ function Home() {
           <h1 className="text-4xl font-semibold md:text-5xl lg:text-6xl">
             Nothing's Real. Except Your Desire To Shop
           </h1>
-          <button className="px-5 py-3 self-center rounded-sm text-slate-100 bg-slate-600 transition duration-350 hover:bg-slate-700 cursor-pointer">
-            Treat Yo Self Anyway
-          </button>
+          <Link to={`/category/men's clothing`}>
+            <button className="px-5 py-3 self-center rounded-sm text-slate-100 bg-slate-600 transition duration-350 hover:bg-slate-700 cursor-pointer">
+              Treat Yo Self Anyway
+            </button>
+          </Link>
         </div>
         <div className="absolute inset-0 bg-black opacity-50"></div>
       </section>
@@ -238,9 +241,11 @@ function Home() {
             Browse our online store or visit us in person to discover the latest
             in fashion, electronics, and fine jewelry.
           </h2>
-          <button className="px-5 py-3 self-center rounded-sm text-slate-100 bg-slate-600 transition duration-350 hover:bg-slate-700 cursor-pointer">
-            Shop Now
-          </button>
+          <Link to={`/category/men's clothing`}>
+            <button className="px-5 py-3 self-center rounded-sm text-slate-100 bg-slate-600 transition duration-350 hover:bg-slate-700 cursor-pointer">
+              Shop Now
+            </button>
+          </Link>
         </div>
         <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
       </section>

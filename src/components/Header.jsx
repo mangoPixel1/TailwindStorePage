@@ -116,7 +116,7 @@ function Header() {
         </div>
       </header>
       {menuOpen && (
-        <nav className="bg-gray-200 min-[830px]:hidden">
+        <nav className="px-10 bg-gray-200 min-[830px]:hidden">
           <ul className="py-3 flex flex-col gap-4">
             {categories.map((cat, index) => (
               <li
@@ -128,6 +128,21 @@ function Header() {
               </li>
             ))}
           </ul>
+          <hr className="mb-4 border-t border-slate-300" />
+          <div className="pb-4 flex flex-col justify-center items-center gap-3">
+            <span
+              className="cursor-pointer text-gray-800 hover:text-gray-700"
+              onClick={toggleMenu}
+            >
+              <Link to="login">Login</Link>
+            </span>
+            <span
+              className="cursor-pointer text-gray-800 hover:text-gray-700"
+              onClick={toggleMenu}
+            >
+              <Link to="cart">Cart</Link>
+            </span>
+          </div>
         </nav>
       )}
     </>

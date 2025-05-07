@@ -38,8 +38,8 @@ function Cart() {
   ];
 
   return (
-    <section className="text-gray-900">
-      <div className="px-5 py-20 bg-white">
+    <section className="flex flex-col lg:flex-row h-screen text-gray-900">
+      <div className="px-5 md:px-10 xl:px-15 py-15 w-full lg:w-2/3 bg-white">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-semibold">Shopping Cart</h1>
           <h2>3 Items</h2>
@@ -47,37 +47,45 @@ function Cart() {
 
         <hr className="my-4 border-t border-slate-300" />
 
-        <div className="grid grid-cols-12 mb-3 text-xs text-gray-500">
-          <span className="col-span-5">Product Details</span>
-          <span className="col-span-3">Quantity</span>
+        <div className="hidden lg:grid lg:grid-cols-12 mb-3 text-xs text-gray-500">
+          <span className="col-span-6">Product Details</span>
+          <span className="col-span-2">Quantity</span>
           <span className="col-span-2">Price</span>
           <span className="col-span-2">Total</span>
         </div>
 
         {cartItems.map((item) => (
-          <div key={item.id} className="grid grid-cols-12 mb-2 text-sm">
-            <div className="col-span-5 flex gap-2 items-center">
+          <div key={item.id}>
+            <div className="hidden lg:grid lg:grid-cols-12 mb-2 text-sm">
+              <div className="col-span-6 flex gap-2 items-center">
+                <img src={item.data.image} />
+                <div>
+                  <span>{item.data.title}</span>
+                </div>
+              </div>
+
+              <span className="col-span-2 flex items-center">
+                {item.quantity}
+              </span>
+              <span className="col-span-2 flex items-center">
+                {item.data.price.toFixed(2)}
+              </span>
+              <span className="col-span-2 flex items-center">
+                {(item.data.price * item.quantity).toFixed(2)}
+              </span>
+            </div>
+            <div className="lg:hidden flex">
               <img src={item.data.image} />
-              <div>
-                <span>{item.data.title}</span>
-                <span>{item.data.category}</span>
+              <div className="flex flex-col justify-between">
+                <span className="text-sm">{item.data.title}</span>
+                <span className="text-xs text-gray-500">{`Category: ${item.data.category}`}</span>
               </div>
             </div>
-
-            <span className="col-span-3 flex items-center">
-              {item.quantity}
-            </span>
-            <span className="col-span-2 flex items-center">
-              {item.data.price.toFixed(2)}
-            </span>
-            <span className="col-span-2 flex items-center">
-              {(item.data.price * item.quantity).toFixed(2)}
-            </span>
           </div>
         ))}
       </div>
-      <div className="py-20 max-w-4xl flex justify-center items-center bg-gray-200">
-        <div className="w-5/6">
+      <div className="px-5 md:px-10 xl:px-15 py-15 flex justify-center items-start w-full lg:w-1/3 bg-gray-200">
+        <div className="w-full">
           <h1 className="text-2xl font-semibold">Order Summary</h1>
 
           <hr className="my-5 border-t border-slate-300" />
@@ -123,7 +131,7 @@ function Cart() {
             <span>Total Cost</span>
             <span>$100.00</span>
           </div>
-          <button className="block w-full px-3 py-1 rounded-sm text-white bg-slate-500 hover:bg-slate-600 transition duration-300 cursor-pointer">
+          <button className="block w-full px-3 py-2 rounded-sm text-white bg-slate-500 hover:bg-slate-600 transition duration-300 cursor-pointer">
             Check Out
           </button>
         </div>

@@ -9,7 +9,7 @@ function Cart() {
         category: "men's clothing",
         description: "description of product 1",
         price: 12.5,
-        image: "https://placehold.co/50x50",
+        image: "https://placehold.co/75x75",
       },
       quantity: 1,
     },
@@ -20,7 +20,7 @@ function Cart() {
         category: "electronics",
         description: "description of product 2",
         price: 12.5,
-        image: "https://placehold.co/50x50",
+        image: "https://placehold.co/75x75",
       },
       quantity: 1,
     },
@@ -31,14 +31,14 @@ function Cart() {
         category: "jewelery",
         description: "description of product 3",
         price: 12.5,
-        image: "https://placehold.co/50x50",
+        image: "https://placehold.co/75x75",
       },
       quantity: 2,
     },
   ];
 
   return (
-    <section className="flex flex-col lg:flex-row h-screen text-gray-900">
+    <section className="flex flex-col lg:flex-row lg:h-screen text-gray-900">
       <div className="px-5 md:px-10 xl:px-15 py-15 w-full lg:w-2/3 bg-white">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-semibold">Shopping Cart</h1>
@@ -55,7 +55,7 @@ function Cart() {
         </div>
 
         {cartItems.map((item) => (
-          <div key={item.id}>
+          <div key={item.id} className="mb-4">
             <div className="hidden lg:grid lg:grid-cols-12 mb-2 text-sm">
               <div className="col-span-6 flex gap-2 items-center">
                 <img src={item.data.image} />
@@ -74,11 +74,23 @@ function Cart() {
                 {(item.data.price * item.quantity).toFixed(2)}
               </span>
             </div>
-            <div className="lg:hidden flex">
+            <div className="lg:hidden flex gap-4 ">
               <img src={item.data.image} />
-              <div className="flex flex-col justify-between">
-                <span className="text-sm">{item.data.title}</span>
-                <span className="text-xs text-gray-500">{`Category: ${item.data.category}`}</span>
+              <div className="flex flex-col justify-between flex-grow">
+                <div className="flex flex-col">
+                  <span className="text-sm">{item.data.title}</span>
+                  <span className="text-xs text-gray-500">{`Category: ${item.data.category}`}</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span>{`$${item.data.price.toFixed(2)}`}</span>
+                  <input
+                    type="number"
+                    min={1}
+                    max={99}
+                    defaultValue={item.quantity}
+                    className="pl-5 py-1 mr-3 border border-gray-300 rounded-none"
+                  />
+                </div>
               </div>
             </div>
           </div>

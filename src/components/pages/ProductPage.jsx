@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { CartContext } from "../../CartContext";
 import { Link, useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { FaRegStarHalfStroke } from "react-icons/fa6";
@@ -6,6 +7,8 @@ import { FaRegStarHalfStroke } from "react-icons/fa6";
 function ProductPage() {
   let { product } = useParams(); // Extract product name
   const [productData, setProductData] = useState();
+  const { cartItems, addToCart, removeFromCart, updateQuantity } =
+    useContext(CartContext);
 
   //console.log("Product from useParams:", product); // Debugging log
 

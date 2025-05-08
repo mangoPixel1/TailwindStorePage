@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { CartProvider } from "./CartContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.css";
@@ -21,17 +22,19 @@ import ProductPage from "./components/pages/ProductPage";
 function App() {
   return (
     <div className="flex flex-col min-h-screen ">
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/category/:category" element={<CategoryPage />} />
-        <Route path="/product/:product" element={<ProductPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <Footer />
+      <CartProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/category/:category" element={<CategoryPage />} />
+          <Route path="/product/:product" element={<ProductPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </CartProvider>
     </div>
   );
 }

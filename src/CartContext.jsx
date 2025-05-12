@@ -1,15 +1,10 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useReducer } from "react";
 
 export const CartContext = createContext();
 
-export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
-
-  /*
-  Need to generate a unique id for each cart item
+/*
   Use this format:
   {
-      id: 1,
       data: {
         title: "product 1",
         category: "men's clothing",
@@ -22,11 +17,45 @@ export const CartProvider = ({ children }) => {
 
   */
 
-  function addToCart() {}
+const initialState = {
+  cart: [],
+};
 
-  function removeFromCart() {}
+function cartReducer(state, action) {
+  switch (action.type) {
+    case "ADD_TO_CART":
+      return { ...state, cart: [...state.cart, action.payload] };
+    case "REMOVE_FROM_CART":
+      const newCart = state.cart.filter((_, i) => i !== action.payload);
+      return { ...state, cart: newCart };
+    case "UPDATE_QUANTITY":
+      const updatedCart = state.cart.map((item, i) => {
+        if (i === action.payload.index) {
+          return {
+            ...item,
+            quantity: action.payload.newQuantity,
+          };
+        }
+        return item;
+      });
+      return { ...state, cart: updatedCart };
+  }
+}
 
-  function updateQuantity() {}
+export const CartProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(cartReducer, initialState);
+
+  function addItem(item) {
+    dispatch({ type: "ADD_TO_CART", payload: item });
+  }
+
+  function removeItem(index) {
+    dispatch({ type: "REMOVE_FROM_CART", payload: index });
+  }
+
+  function updateQuantity(index, newQuantity) {
+    dispatch({ type: "UPDATE_QUANTITY", payload: { index, newQuantity } });
+  }
 
   return (
     <CartContext.Provider

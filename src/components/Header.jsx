@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../CartContext";
 
 function Header() {
   const [categories, setCategories] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const { getTotalQuantity } = useContext(CartContext);
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products`)
@@ -28,10 +31,6 @@ function Header() {
       })
       .catch((error) => console.error(error));
   }, []);
-
-  useEffect(() => {
-    console.log(`menu expanded: ${menuOpen}`);
-  }, [menuOpen]);
 
   const toggleMenu = () => {
     setMenuOpen((prev) => !prev);
@@ -109,8 +108,8 @@ function Header() {
             <span className="cursor-pointer hover:text-slate-200 text-sm">
               <Link to="login">Login</Link>
             </span>
-            <span className="cursor-pointer hover:text-slate-200 text-sm">
-              <Link to="cart">Cart</Link>
+            <span className="cursor-pointer hover:text-slate-200 text-sm whitespace-nowrap">
+              <Link to="cart">{`Cart (${getTotalQuantity()})`}</Link>
             </span>
           </div>
         </div>
@@ -140,7 +139,7 @@ function Header() {
               className="cursor-pointer text-gray-800 hover:text-gray-700"
               onClick={toggleMenu}
             >
-              <Link to="cart">Cart</Link>
+              <Link to="cart">{`Cart (${getTotalQuantity()})`}</Link>
             </span>
           </div>
         </nav>
@@ -150,35 +149,3 @@ function Header() {
 }
 
 export default Header;
-
-/*
-return (
-    <header className="flex justify-between items-baseline flex-col gap-y-4 lg:flex-row bg-slate-500 p-6 text-slate-100">
-      <div className="flex items-center">
-        <h1 className="text-slate-200 text-2xl font-bold mr-10">
-          <Link to="/">Fake Store</Link>
-        </h1>
-        <nav>
-          <ul className="flex flex-wrap space-x-5">
-            {categories.map((cat, index) => (
-              <li key={index} className="cursor-pointer hover:text-slate-200">
-                <Link to={`category/${cat.toLowerCase()}`}>{cat}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-      <div className="flex items-center space-x-3">
-        <span className="cursor-pointer hover:text-slate-200">
-          <Link to="search">Search</Link>
-        </span>
-        <span className="cursor-pointer hover:text-slate-200">
-          <Link to="login">Login</Link>
-        </span>
-        <span className="cursor-pointer hover:text-slate-200">
-          <Link to="cart">Cart</Link>
-        </span>
-      </div>
-    </header>
-  );
-*/

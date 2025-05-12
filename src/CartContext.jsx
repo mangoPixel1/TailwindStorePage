@@ -1,21 +1,6 @@
-import { createContext, useState, useReducer } from "react";
+import { createContext, useReducer } from "react";
 
 export const CartContext = createContext();
-
-/*
-  Use this format:
-  {
-      data: {
-        title: "product 1",
-        category: "men's clothing",
-        description: "description of product 1",
-        price: 12.5,
-        image: "https://placehold.co/75x75",
-      },
-      quantity: 1,
-    },
-
-  */
 
 const initialState = {
   cart: [],
@@ -57,11 +42,40 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: "UPDATE_QUANTITY", payload: { index, newQuantity } });
   }
 
+  function getTotalQuantity() {
+    const result = state.cart.reduce((accumulator, currentItem) => {
+      accumulator + currentItem.quantity;
+      // return the updated accumulator
+    }, 0);
+    return result;
+  }
+
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, removeFromCart, updateQuantity }}
+      value={{
+        cart: state.cart,
+        addItem,
+        removeItem,
+        updateQuantity,
+        getTotalQuantity,
+      }}
     >
       {children}
     </CartContext.Provider>
   );
 };
+
+/*
+  Use this format:
+  {
+      data: {
+        title: "product 1",
+        category: "men's clothing",
+        description: "description of product 1",
+        price: 12.5,
+        image: "https://placehold.co/75x75",
+      },
+      quantity: 1,
+    },
+
+  */

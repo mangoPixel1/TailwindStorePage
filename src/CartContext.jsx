@@ -9,6 +9,21 @@ const initialState = {
 function cartReducer(state, action) {
   switch (action.type) {
     case "ADD_TO_CART":
+      const newItem = action.payload;
+      const newItemIndex = state.cart.findIndex(
+        (item) => item.data.id === newItem.data.id
+      );
+
+      if (newItemIndex !== -1) {
+        const updatedCart = state.cart.map((item, i) => {
+          if (i === newItemIndex) {
+            return { ...item, quantity: item.quantity + 1 };
+          }
+          return item;
+        });
+        return { ...state, cart: updatedCart };
+      }
+
       return { ...state, cart: [...state.cart, action.payload] };
     case "REMOVE_FROM_CART":
       const newCart = state.cart.filter((_, i) => i !== action.payload);
@@ -43,9 +58,16 @@ export const CartProvider = ({ children }) => {
   }
 
   function getTotalQuantity() {
-    const result = state.cart.reduce((accumulator, currentItem) => {
-      accumulator + currentItem.quantity;
+    const result = state.cart.reduce((acc, currentItem) => {
+      return acc + currentItem.quantity;
       // return the updated accumulator
+    }, 0);
+    return result;
+  }
+
+  function getTotalPrice() {
+    const result = state.cart.reduce((acc, currentItem) => {
+      return acc + currentItem.quantity * currentItem.data.price;
     }, 0);
     return result;
   }
@@ -58,6 +80,7 @@ export const CartProvider = ({ children }) => {
         removeItem,
         updateQuantity,
         getTotalQuantity,
+        getTotalPrice,
       }}
     >
       {children}
@@ -69,6 +92,7 @@ export const CartProvider = ({ children }) => {
   Use this format:
   {
       data: {
+        id: 1,
         title: "product 1",
         category: "men's clothing",
         description: "description of product 1",

@@ -2,6 +2,9 @@ import { useContext } from "react";
 import { CartContext } from "../../CartContext";
 
 function Cart() {
+  const { cart, removeItem, updateQuanity, getTotalQuantity } =
+    useContext(CartContext);
+
   const cartItems = [
     {
       id: 1,
@@ -43,7 +46,7 @@ function Cart() {
       <div className="px-5 md:px-10 xl:px-15 py-15 w-full lg:w-2/3 bg-white">
         <div className="flex justify-between items-center">
           <h1 className="text-3xl font-semibold">Shopping Cart</h1>
-          <h2>3 Items</h2>
+          <h2>{`${getTotalQuantity()} items`}</h2>
         </div>
 
         <hr className="my-4 border-t border-slate-300" />
@@ -55,11 +58,17 @@ function Cart() {
           <span className="col-span-2">Total</span>
         </div>
 
-        {cartItems.map((item) => (
-          <div key={item.id} className="mb-4">
+        {cart.map((item, index) => (
+          <div key={index} className="mb-4">
             <div className="hidden lg:grid lg:grid-cols-12 mb-2 text-sm">
               <div className="col-span-6 flex gap-2 items-center">
-                <img src={item.data.image} />
+                <div className="w-[75px] h-[75px] bg-white">
+                  <img
+                    src={item.data.image}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+
                 <div>
                   <span>{item.data.title}</span>
                 </div>
@@ -69,14 +78,20 @@ function Cart() {
                 {item.quantity}
               </span>
               <span className="col-span-2 flex items-center">
-                {item.data.price.toFixed(2)}
+                {`$${item.data.price.toFixed(2)}`}
               </span>
               <span className="col-span-2 flex items-center">
-                {(item.data.price * item.quantity).toFixed(2)}
+                {`$${(item.data.price * item.quantity).toFixed(2)}`}
               </span>
             </div>
             <div className="lg:hidden flex gap-4 ">
-              <img src={item.data.image} />
+              <div className="w-[75px] h-[75px] bg-white">
+                <img
+                  src={item.data.image}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+
               <div className="flex flex-col justify-between flex-grow">
                 <div className="flex flex-col">
                   <span className="text-sm">{item.data.title}</span>

@@ -1,14 +1,15 @@
 import React, { useEffect, useState, useContext } from "react";
-import { CartContext } from "../../CartContext";
 import { Link, useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { FaRegStarHalfStroke } from "react-icons/fa6";
 
+import { CartContext } from "../../CartContext";
+
 function ProductPage() {
   let { product } = useParams(); // Extract product name
   const [productData, setProductData] = useState();
-  const { cartItems, addToCart, removeFromCart, updateQuantity } =
-    useContext(CartContext);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
+  const { addItem } = useContext(CartContext);
 
   //console.log("Product from useParams:", product); // Debugging log
 
@@ -20,6 +21,20 @@ function ProductPage() {
         setProductData(data);
       });
   }, [product]);
+
+  function formatCartItemData() {
+    return {
+      data: {
+        id: productData.id,
+        title: productData.title,
+        category: productData.category,
+        description: productData.description,
+        price: productData.price,
+        image: productData.image,
+      },
+      quantity: selectedQuantity,
+    };
+  }
 
   return (
     <section className="flex justify-center bg-gray-50">
@@ -83,10 +98,14 @@ function ProductPage() {
                   type="number"
                   min={1}
                   max={99}
-                  defaultValue={1}
+                  value={selectedQuantity}
+                  onChange={(e) => setSelectedQuantity(e.target.value)}
                   className="pl-5 py-1 mr-3 border border-gray-300 rounded-none"
                 />
-                <button className="px-3 py-1 self-center rounded-sm text-slate-100 bg-slate-600 transition duration-350 hover:bg-slate-700 cursor-pointer">
+                <button
+                  className="px-3 py-1 self-center rounded-sm text-slate-100 bg-slate-600 transition duration-350 hover:bg-slate-700 cursor-pointer"
+                  onClick={() => addItem(formatCartItemData())}
+                >
                   Add to Cart
                 </button>
               </div>

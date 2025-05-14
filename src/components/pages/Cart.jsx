@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../../CartContext";
 
 function Cart() {
-  const { cart, removeItem, updateQuanity, getTotalQuantity } =
+  const { cart, removeItem, updateQuanity, getTotalQuantity, getTotalPrice } =
     useContext(CartContext);
 
   const cartItems = [
@@ -137,7 +137,7 @@ function Cart() {
           <div>
             <div className="flex justify-between">
               <span>Total price:</span>
-              <span>$100.00</span>
+              <span>{`$${getTotalPrice().toFixed(2)}`}</span>
             </div>
             <div className="flex justify-between">
               <span>Discount:</span>

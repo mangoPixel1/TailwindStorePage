@@ -9,22 +9,32 @@ const initialState = {
 function cartReducer(state, action) {
   switch (action.type) {
     case "ADD_TO_CART":
-      const newItem = action.payload;
+      const newItem = action.payload; // The item from the payload
       const newItemIndex = state.cart.findIndex(
         (item) => item.data.id === newItem.data.id
-      );
+      ); // The index of the cart item that matches the payload's item id if found
 
+      // If payload item already exists in cart
       if (newItemIndex !== -1) {
         const updatedCart = state.cart.map((item, i) => {
           if (i === newItemIndex) {
-            return { ...item, quantity: item.quantity + 1 };
+            return {
+              ...item,
+              quantity: item.quantity + newItem.quantity,
+            }; // increment the quantity
           }
           return item;
         });
         return { ...state, cart: updatedCart };
       }
 
-      return { ...state, cart: [...state.cart, action.payload] };
+      // If payload item does NOT exist in cart
+      const updatedCart2 = {
+        ...state,
+        cart: [...state.cart, newItem],
+      };
+
+      return updatedCart2;
     case "REMOVE_FROM_CART":
       const newCart = state.cart.filter((_, i) => i !== action.payload);
       return { ...state, cart: newCart };
@@ -39,6 +49,8 @@ function cartReducer(state, action) {
         return item;
       });
       return { ...state, cart: updatedCart };
+    default:
+      return state;
   }
 }
 
@@ -60,7 +72,6 @@ export const CartProvider = ({ children }) => {
   function getTotalQuantity() {
     const result = state.cart.reduce((acc, currentItem) => {
       return acc + currentItem.quantity;
-      // return the updated accumulator
     }, 0);
     return result;
   }

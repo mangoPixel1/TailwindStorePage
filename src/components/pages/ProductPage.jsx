@@ -22,8 +22,8 @@ function ProductPage() {
       });
   }, [product]);
 
-  function formatCartItemData() {
-    return {
+  function handleAddToCart() {
+    const itemObj = {
       data: {
         id: productData.id,
         title: productData.title,
@@ -32,8 +32,12 @@ function ProductPage() {
         price: productData.price,
         image: productData.image,
       },
-      quantity: selectedQuantity,
+      quantity: parseInt(selectedQuantity),
     };
+
+    addItem(itemObj);
+
+    setSelectedQuantity(1);
   }
 
   return (
@@ -104,7 +108,7 @@ function ProductPage() {
                 />
                 <button
                   className="px-3 py-1 self-center rounded-sm text-slate-100 bg-slate-600 transition duration-350 hover:bg-slate-700 cursor-pointer"
-                  onClick={() => addItem(formatCartItemData())}
+                  onClick={() => handleAddToCart()}
                 >
                   Add to Cart
                 </button>

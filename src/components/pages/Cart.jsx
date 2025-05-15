@@ -5,42 +5,6 @@ function Cart() {
   const { cart, removeItem, updateQuanity, getTotalQuantity, getTotalPrice } =
     useContext(CartContext);
 
-  const cartItems = [
-    {
-      id: 1,
-      data: {
-        title: "product 1",
-        category: "men's clothing",
-        description: "description of product 1",
-        price: 12.5,
-        image: "https://placehold.co/75x75",
-      },
-      quantity: 1,
-    },
-    {
-      id: 2,
-      data: {
-        title: "product 2",
-        category: "electronics",
-        description: "description of product 2",
-        price: 12.5,
-        image: "https://placehold.co/75x75",
-      },
-      quantity: 1,
-    },
-    {
-      id: 3,
-      data: {
-        title: "product 3",
-        category: "jewelery",
-        description: "description of product 3",
-        price: 12.5,
-        image: "https://placehold.co/75x75",
-      },
-      quantity: 2,
-    },
-  ];
-
   return (
     <section className="flex flex-col lg:flex-row lg:h-screen text-gray-900">
       <div className="px-5 md:px-10 xl:px-15 py-15 w-full lg:w-2/3 bg-white">
@@ -59,7 +23,7 @@ function Cart() {
         </div>
 
         {cart.map((item, index) => (
-          <div key={index} className="mb-4">
+          <div key={index} className="mb-8">
             <div className="hidden lg:grid lg:grid-cols-12 mb-2 text-sm">
               <div className="col-span-6 flex gap-2 items-center">
                 <div className="w-[75px] h-[75px] bg-white">
@@ -84,28 +48,41 @@ function Cart() {
                 {`$${(item.data.price * item.quantity).toFixed(2)}`}
               </span>
             </div>
-            <div className="lg:hidden flex gap-4 ">
-              <div className="w-[75px] h-[75px] bg-white">
+
+            <div className="lg:hidden grid grid-cols-6 sm:grid-cols-12 ">
+              <div className="col-span-2 sm:col-span-2 aspect-square bg-white">
                 <img
                   src={item.data.image}
                   className="w-full h-full object-contain"
                 />
               </div>
 
-              <div className="flex flex-col justify-between flex-grow">
+              <div className="col-span-4 sm:col-span-7 flex flex-col justify-between flex-grow">
                 <div className="flex flex-col">
-                  <span className="text-sm">{item.data.title}</span>
-                  <span className="text-xs text-gray-500">{`Category: ${item.data.category}`}</span>
-                </div>
-                <div className="flex justify-between items-center">
+                  <span className="text-xs sm:text-sm">{item.data.title}</span>
+                  <span className="text-xs text-gray-500 capitalize">
+                    {item.data.category}
+                  </span>
                   <span>{`$${item.data.price.toFixed(2)}`}</span>
-                  <input
-                    type="number"
-                    min={1}
-                    max={99}
-                    defaultValue={item.quantity}
-                    className="pl-5 py-1 mr-3 border border-gray-300 rounded-none"
-                  />
+                </div>
+              </div>
+
+              <div className="col-span-2 sm:col-span-3 flex justify-end items-center">
+                <div className="flex flex-col gap-2 items-center">
+                  <button className="text-red-700 hover:text-red-800 text-xs cursor-pointer">
+                    Remove
+                  </button>
+                  <div>
+                    <button className="cursor-pointer">-</button>
+                    <input
+                      type="number"
+                      min={1}
+                      max={99}
+                      defaultValue={item.quantity}
+                      className="pl-5 py-1 mx-3 border border-gray-300 rounded-none"
+                    />
+                    <button className="cursor-pointer">+</button>
+                  </div>
                 </div>
               </div>
             </div>

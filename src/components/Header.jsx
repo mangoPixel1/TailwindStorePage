@@ -42,7 +42,10 @@ function Header() {
         <div className="flex items-center justify-between w-full lg:max-w-7xl">
           <div className="flex items-center justify-between w-full">
             <div className="flex items-center gap-10">
-              <h1 className="text-2xl min-[600px]:text-3xl font-bold">
+              <h1
+                className="text-2xl min-[600px]:text-3xl font-bold"
+                onClick={toggleMenu}
+              >
                 <Link to="/">Fake Store</Link>
               </h1>
 

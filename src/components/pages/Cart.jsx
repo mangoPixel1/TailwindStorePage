@@ -1,6 +1,9 @@
 import { useContext } from "react";
 import { CartContext } from "../../CartContext";
 
+// Icons
+import { FaTrash } from "react-icons/fa";
+
 function Cart() {
   const { cart, removeItem, updateQuanity, getTotalQuantity, getTotalPrice } =
     useContext(CartContext);
@@ -16,40 +19,53 @@ function Cart() {
         <hr className="my-4 border-t border-slate-300" />
 
         <div className="hidden lg:grid lg:grid-cols-12 mb-3 text-xs text-gray-500">
-          <span className="col-span-6">Product Details</span>
+          <span className="col-span-8">Product Details</span>
           <span className="col-span-2">Quantity</span>
-          <span className="col-span-2">Price</span>
           <span className="col-span-2">Total</span>
         </div>
 
         {cart.map((item, index) => (
           <div key={index} className="mb-8">
             <div className="hidden lg:grid lg:grid-cols-12 mb-2 text-sm">
-              <div className="col-span-6 flex gap-2 items-center">
-                <div className="w-[75px] h-[75px] bg-white">
-                  <img
-                    src={item.data.image}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-
-                <div>
+              <div className="col-span-2 w-[75px] h-[75px] bg-white">
+                <img
+                  src={item.data.image}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div className="col-span-6 pr-8 flex gap-2 items-center">
+                <div className="flex flex-col items-start">
                   <span>{item.data.title}</span>
+                  <span className="capitalize text-gray-500 text-xs">
+                    {item.data.category}
+                  </span>
+                  <span className="font-semibold">{`$${item.data.price.toFixed(
+                    2
+                  )}`}</span>
                 </div>
               </div>
 
-              <span className="col-span-2 flex items-center">
-                {item.quantity}
-              </span>
-              <span className="col-span-2 flex items-center">
-                {`$${item.data.price.toFixed(2)}`}
-              </span>
-              <span className="col-span-2 flex items-center">
-                {`$${(item.data.price * item.quantity).toFixed(2)}`}
-              </span>
+              <div className="col-span-2 flex flex-col justify-center items-start">
+                <div className="flex space-x-4 px-4 py-1 rounded-lg border-1 border-solid border-gray-300">
+                  <button className="cursor-pointer text-gray-600">-</button>
+                  <span className="flex items-center font-light">
+                    {item.quantity}
+                  </span>
+                  <button className="cursor-pointer text-gray-600">+</button>
+                </div>
+              </div>
+
+              <div className="col-span-2 flex justify-between items-center">
+                <span>
+                  {`$${(item.data.price * item.quantity).toFixed(2)}`}
+                </span>
+                <button className="cursor-pointer">
+                  <FaTrash color="#b05d5d" />
+                </button>
+              </div>
             </div>
 
-            <div className="lg:hidden grid grid-cols-6 sm:grid-cols-12 ">
+            <div className="lg:hidden grid grid-cols-8 sm:grid-cols-12 ">
               <div className="col-span-2 sm:col-span-2 aspect-square bg-white">
                 <img
                   src={item.data.image}
@@ -60,29 +76,25 @@ function Cart() {
               <div className="col-span-4 sm:col-span-7 flex flex-col justify-between flex-grow">
                 <div className="flex flex-col">
                   <span className="text-xs sm:text-sm">{item.data.title}</span>
-                  <span className="text-xs text-gray-500 capitalize">
+                  <span className="hidden sm:block text-xs text-gray-500 capitalize">
                     {item.data.category}
                   </span>
                   <span>{`$${item.data.price.toFixed(2)}`}</span>
                 </div>
               </div>
 
-              <div className="col-span-2 sm:col-span-3 flex justify-end items-center">
-                <div className="flex flex-col gap-2 items-center">
-                  <button className="text-red-700 hover:text-red-800 text-xs cursor-pointer">
-                    Remove
-                  </button>
-                  <div>
-                    <button className="cursor-pointer">-</button>
-                    <input
-                      type="number"
-                      min={1}
-                      max={99}
-                      defaultValue={item.quantity}
-                      className="pl-5 py-1 mx-3 border border-gray-300 rounded-none"
-                    />
-                    <button className="cursor-pointer">+</button>
+              <div className="col-span-2 sm:col-span-3 flex flex-col justify-center items-center">
+                <div className="flex flex-col sm:flex-row gap-4 items-center">
+                  <div className="flex space-x-4 px-4 py-1 rounded-lg border-1 border-solid border-gray-300">
+                    <button className="cursor-pointer text-gray-600">-</button>
+                    <span className="flex items-center font-light">
+                      {item.quantity}
+                    </span>
+                    <button className="cursor-pointer text-gray-600">+</button>
                   </div>
+                  <button className="cursor-pointer">
+                    <FaTrash color="#b05d5d" />
+                  </button>
                 </div>
               </div>
             </div>
@@ -146,3 +158,13 @@ function Cart() {
 }
 
 export default Cart;
+
+/*
+<input
+                      type="number"
+                      min={1}
+                      max={99}
+                      defaultValue={item.quantity}
+                      className="pl-5 py-1 mx-3 border border-gray-300 rounded-none"
+                    />
+*/

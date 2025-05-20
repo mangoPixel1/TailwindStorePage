@@ -5,7 +5,7 @@ import { CartContext } from "../../CartContext";
 import { FaTrash } from "react-icons/fa";
 
 function Cart() {
-  const { cart, removeItem, updateQuanity, getTotalQuantity, getTotalPrice } =
+  const { cart, removeItem, updateQuantity, getTotalQuantity, getTotalPrice } =
     useContext(CartContext);
 
   return (
@@ -51,11 +51,21 @@ function Cart() {
 
               <div className="col-span-2 flex flex-col justify-center items-start">
                 <div className="flex space-x-4 px-4 py-1 rounded-lg border border-solid border-gray-300">
-                  <button className="cursor-pointer text-gray-600">-</button>
+                  <button
+                    className="cursor-pointer text-gray-600"
+                    onClick={() => updateQuantity(index, item.quantity - 1)}
+                  >
+                    -
+                  </button>
                   <span className="flex items-center font-light">
                     {item.quantity}
                   </span>
-                  <button className="cursor-pointer text-gray-600">+</button>
+                  <button
+                    className="cursor-pointer text-gray-600"
+                    onClick={() => updateQuantity(index, item.quantity + 1)}
+                  >
+                    +
+                  </button>
                 </div>
               </div>
 
@@ -63,7 +73,10 @@ function Cart() {
                 <span>
                   {`$${(item.data.price * item.quantity).toFixed(2)}`}
                 </span>
-                <button className="cursor-pointer">
+                <button
+                  className="cursor-pointer"
+                  onClick={() => removeItem(index)}
+                >
                   <FaTrash color="#b05d5d" />
                 </button>
               </div>
@@ -92,19 +105,28 @@ function Cart() {
                 <div className="flex flex-col sm:flex-row gap-4 items-center">
                   <div className="flex flex-col-reverse sm:flex-row sm:items-center items-center space-y-4 px-4 py-1 rounded-lg border border-solid border-gray-300">
                     <div className="flex flex-col sm:flex-row-reverse sm:space-x-4 sm:space-x-reverse items-center justify-center">
-                      <button className="text-xs sm:text-base cursor-pointer text-gray-600">
+                      <button
+                        className="text-xs sm:text-base cursor-pointer text-gray-600"
+                        onClick={() => updateQuantity(index, item.quantity + 1)}
+                      >
                         +
                       </button>
                       <span className="text-xs sm:text-base font-light text-center leading-tight">
                         {item.quantity}
                       </span>
-                      <button className="text-xs sm:text-base cursor-pointer text-gray-600">
+                      <button
+                        className="text-xs sm:text-base cursor-pointer text-gray-600"
+                        onClick={() => updateQuantity(index, item.quantity - 1)}
+                      >
                         -
                       </button>
                     </div>
                   </div>
 
-                  <button className="cursor-pointer">
+                  <button
+                    className="cursor-pointer"
+                    onClick={() => removeItem(index)}
+                  >
                     <FaTrash color="#b05d5d" />
                   </button>
                 </div>

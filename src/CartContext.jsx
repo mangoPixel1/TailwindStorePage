@@ -102,15 +102,15 @@ export const CartProvider = ({ children }) => {
 /*
   Use this format:
   {
-      data: {
-        id: 1,
-        title: "product 1",
-        category: "men's clothing",
-        description: "description of product 1",
-        price: 12.5,
-        image: "https://placehold.co/75x75",
-      },
-      quantity: 1,
+    data: {
+      id: 1,
+      title: "product 1",
+      category: "men's clothing",
+      description: "description of product 1",
+      price: 12.5,
+      image: "https://placehold.co/75x75",
     },
+    quantity: 1,
+  },
 
   */

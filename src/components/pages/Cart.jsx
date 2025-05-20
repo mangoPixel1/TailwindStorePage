@@ -12,12 +12,15 @@ function Cart() {
     <section className="flex flex-col lg:flex-row lg:h-screen text-gray-900">
       <div className="px-5 md:px-10 xl:px-15 py-15 w-full lg:w-2/3 bg-white">
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-semibold">Shopping Cart</h1>
+          <h1 className="text-3xl text-gray-800 font-semibold">
+            Shopping Cart
+          </h1>
           <h2>{`${getTotalQuantity()} items`}</h2>
         </div>
 
         <hr className="my-4 border-t border-slate-300" />
 
+        {/* Desktop - column labels */}
         <div className="hidden lg:grid lg:grid-cols-12 mb-3 text-xs text-gray-500">
           <span className="col-span-8">Product Details</span>
           <span className="col-span-2">Quantity</span>
@@ -26,6 +29,7 @@ function Cart() {
 
         {cart.map((item, index) => (
           <div key={index} className="mb-8">
+            {/* Desktop view */}
             <div className="hidden lg:grid lg:grid-cols-12 mb-2 text-sm">
               <div className="col-span-2 w-[75px] h-[75px] bg-white">
                 <img
@@ -46,7 +50,7 @@ function Cart() {
               </div>
 
               <div className="col-span-2 flex flex-col justify-center items-start">
-                <div className="flex space-x-4 px-4 py-1 rounded-lg border-1 border-solid border-gray-300">
+                <div className="flex space-x-4 px-4 py-1 rounded-lg border border-solid border-gray-300">
                   <button className="cursor-pointer text-gray-600">-</button>
                   <span className="flex items-center font-light">
                     {item.quantity}
@@ -65,6 +69,7 @@ function Cart() {
               </div>
             </div>
 
+            {/* Mobile view */}
             <div className="lg:hidden grid grid-cols-8 sm:grid-cols-12 ">
               <div className="col-span-2 sm:col-span-2 aspect-square bg-white">
                 <img
@@ -85,13 +90,20 @@ function Cart() {
 
               <div className="col-span-2 sm:col-span-3 flex flex-col justify-center items-center">
                 <div className="flex flex-col sm:flex-row gap-4 items-center">
-                  <div className="flex space-x-4 px-4 py-1 rounded-lg border-1 border-solid border-gray-300">
-                    <button className="cursor-pointer text-gray-600">-</button>
-                    <span className="flex items-center font-light">
-                      {item.quantity}
-                    </span>
-                    <button className="cursor-pointer text-gray-600">+</button>
+                  <div className="flex flex-col-reverse sm:flex-row sm:items-center items-center space-y-4 px-4 py-1 rounded-lg border border-solid border-gray-300">
+                    <div className="flex flex-col sm:flex-row-reverse sm:space-x-4 sm:space-x-reverse items-center justify-center">
+                      <button className="text-xs sm:text-base cursor-pointer text-gray-600">
+                        +
+                      </button>
+                      <span className="text-xs sm:text-base font-light text-center leading-tight">
+                        {item.quantity}
+                      </span>
+                      <button className="text-xs sm:text-base cursor-pointer text-gray-600">
+                        -
+                      </button>
+                    </div>
                   </div>
+
                   <button className="cursor-pointer">
                     <FaTrash color="#b05d5d" />
                   </button>

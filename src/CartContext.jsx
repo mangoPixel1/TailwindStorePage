@@ -39,8 +39,9 @@ function cartReducer(state, action) {
       const newCart = state.cart.filter((_, i) => i !== action.payload);
       return { ...state, cart: newCart };
     case "UPDATE_QUANTITY":
+      // ADD feature: remove item when newQuantity < 1
       const updatedCart = state.cart.map((item, i) => {
-        if (i === action.payload.index) {
+        if (i === action.payload.index && action.payload.newQuantity > 0) {
           return {
             ...item,
             quantity: action.payload.newQuantity,

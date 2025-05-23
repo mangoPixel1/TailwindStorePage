@@ -3,13 +3,17 @@ import { Link, useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { FaRegStarHalfStroke } from "react-icons/fa6";
 
+// Context
 import { CartContext } from "../../CartContext";
+
+// Components
+import CartDrawer from "../CartDrawer";
 
 function ProductPage() {
   let { product } = useParams(); // Extract product name
   const [productData, setProductData] = useState();
   const [selectedQuantity, setSelectedQuantity] = useState(1);
-  const { addItem } = useContext(CartContext);
+  const { isCartOpen, addItem, toggleCart } = useContext(CartContext);
 
   //console.log("Product from useParams:", product); // Debugging log
 
@@ -36,12 +40,13 @@ function ProductPage() {
     };
 
     addItem(itemObj);
-
     setSelectedQuantity(1);
+    toggleCart();
   }
 
   return (
     <section className="flex justify-center bg-gray-50">
+      {isCartOpen && <CartDrawer />}
       {productData && (
         <div className="lg:max-w-7xl p-5 md:px-10">
           <div className="flex flex-col gap-5 md:gap-10 md:flex-row">

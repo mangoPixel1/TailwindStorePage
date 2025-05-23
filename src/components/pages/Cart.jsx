@@ -15,7 +15,9 @@ function Cart() {
           <h1 className="text-3xl text-gray-800 font-semibold">
             Shopping Cart
           </h1>
-          <h2>{`${getTotalQuantity()} items`}</h2>
+          <h2>{`(${getTotalQuantity()} ${
+            getTotalQuantity() === 1 ? `item` : `items`
+          })`}</h2>
         </div>
 
         <hr className="my-4 border-t border-slate-300" />

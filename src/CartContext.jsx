@@ -4,6 +4,7 @@ export const CartContext = createContext();
 
 const initialState = {
   cart: [],
+  isCartOpen: false,
 };
 
 function cartReducer(state, action) {
@@ -50,6 +51,10 @@ function cartReducer(state, action) {
         return item;
       });
       return { ...state, cart: updatedCart };
+    case "TOGGLE_CART":
+      return { ...state, isCartOpen: !state.isCartOpen };
+    case "CLOSE_CART":
+      return { ...state, isCartOpen: false };
     default:
       return state;
   }
@@ -84,15 +89,26 @@ export const CartProvider = ({ children }) => {
     return result;
   }
 
+  function toggleCart() {
+    dispatch({ type: "TOGGLE_CART" });
+  }
+
+  function closeCart() {
+    dispatch({ type: "CLOSE_CART" });
+  }
+
   return (
     <CartContext.Provider
       value={{
         cart: state.cart,
+        isCartOpen: state.isCartOpen,
         addItem,
         removeItem,
         updateQuantity,
         getTotalQuantity,
         getTotalPrice,
+        toggleCart,
+        closeCart,
       }}
     >
       {children}

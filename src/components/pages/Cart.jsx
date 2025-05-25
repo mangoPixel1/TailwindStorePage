@@ -166,7 +166,7 @@ function Cart() {
             </div>
             <div className="flex justify-between">
               <span>Discount:</span>
-              <span>-$60.00</span>
+              <span>-$0.00</span>
             </div>
             <div className="flex justify-between">
               <span>Tax:</span>
@@ -182,7 +182,7 @@ function Cart() {
 
           <div className="mb-4 flex justify-between text-lg">
             <span>Total Cost</span>
-            <span>$100.00</span>
+            <span>{`$${getTotalPrice().toFixed(2)}`}</span>
           </div>
           <button className="block w-full px-3 py-2 rounded-sm text-white bg-slate-500 hover:bg-slate-600 transition duration-300 cursor-pointer">
             Check Out

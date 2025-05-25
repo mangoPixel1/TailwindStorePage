@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { FaRegStarHalfStroke } from "react-icons/fa6";
@@ -13,10 +13,30 @@ function ProductPage() {
   let { product } = useParams(); // Extract product name
   const [productData, setProductData] = useState();
   const [selectedQuantity, setSelectedQuantity] = useState(1);
-  const { isCartOpen, addItem, toggleCart } = useContext(CartContext);
+  const { isCartOpen, addItem, toggleCart, closeCart } =
+    useContext(CartContext);
 
-  //console.log("Product from useParams:", product); // Debugging log
+  const cartRef = useRef();
 
+  function handleOutsideCartClick(event) {
+    if (
+      isCartOpen &&
+      cartRef.current &&
+      !cartRef.current.contains(event.target)
+    ) {
+      closeCart();
+    }
+  }
+
+  // Add event listener for clicks outside CartDrawer
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideCartClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideCartClick);
+    };
+  }, [isCartOpen]);
+
+  // Fetch product data
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${product}`)
       .then((response) => response.json())
@@ -46,7 +66,11 @@ function ProductPage() {
 
   return (
     <section className="flex justify-center bg-gray-50">
-      {isCartOpen && <CartDrawer />}
+      {isCartOpen && (
+        <div ref={cartRef}>
+          <CartDrawer />
+        </div>
+      )}
       {productData && (
         <div className="lg:max-w-7xl p-5 md:px-10">
           <div className="flex flex-col gap-5 md:gap-10 md:flex-row">

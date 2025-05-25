@@ -36,6 +36,10 @@ function Header() {
     setMenuOpen((prev) => !prev);
   };
 
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
+
   return (
     <>
       <header className="px-5 md:px-10 py-5 flex justify-center bg-slate-500 text-white">
@@ -44,7 +48,7 @@ function Header() {
             <div className="flex items-center gap-10">
               <h1
                 className="text-2xl min-[600px]:text-3xl font-bold"
-                onClick={toggleMenu}
+                onClick={closeMenu}
               >
                 <Link to="/">Fake Store</Link>
               </h1>
@@ -124,7 +128,7 @@ function Header() {
               <li
                 key={index}
                 className="py-3 text-center capitalize cursor-pointer text-gray-800 hover:text-gray-700"
-                onClick={toggleMenu}
+                onClick={closeMenu}
               >
                 <Link to={`category/${cat.toLowerCase()}`}>{cat}</Link>
               </li>
@@ -134,13 +138,13 @@ function Header() {
           <div className="pb-4 flex flex-col justify-center items-center gap-3">
             <span
               className="cursor-pointer text-gray-800 hover:text-gray-700"
-              onClick={toggleMenu}
+              onClick={closeMenu}
             >
               <Link to="login">Login</Link>
             </span>
             <span
               className="cursor-pointer text-gray-800 hover:text-gray-700"
-              onClick={toggleMenu}
+              onClick={closeMenu}
             >
               <Link to="cart">{`Cart (${getTotalQuantity()})`}</Link>
             </span>

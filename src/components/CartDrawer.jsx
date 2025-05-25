@@ -38,6 +38,7 @@ function CartDrawer() {
             <div className="col-span-5 text-xs">
               <p>{item.data.title}</p>
               <p>{`$${item.data.price.toFixed(2)}`}</p>
+              <p>{`x${item.quantity}`}</p>
             </div>
             <div className="col-span-1 flex justify-end">
               <button onClick={() => removeItem(index)}>

@@ -13,28 +13,31 @@ function ProductPage() {
   let { product } = useParams(); // Extract product name
   const [productData, setProductData] = useState();
   const [selectedQuantity, setSelectedQuantity] = useState(1);
+  const [isMdOrLarger, setIsMdOrLarger] = useState(false);
+
   const { isCartOpen, addItem, toggleCart, closeCart } =
     useContext(CartContext);
 
   const cartRef = useRef();
 
-  function handleOutsideCartClick(event) {
-    if (
-      isCartOpen &&
-      cartRef.current &&
-      !cartRef.current.contains(event.target)
-    ) {
-      closeCart();
-    }
-  }
-
-  // Add event listener for clicks outside CartDrawer
+  // Listen for clicks outside CartDrawer
   useEffect(() => {
     document.addEventListener("mousedown", handleOutsideCartClick);
     return () => {
       document.removeEventListener("mousedown", handleOutsideCartClick);
     };
   }, [isCartOpen]);
+
+  // Detect window size to determine whether to show cart drawer for md breakpoint
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowResize);
+
+    handleWindowResize();
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
 
   // Fetch product data
   useEffect(() => {
@@ -64,11 +67,39 @@ function ProductPage() {
     toggleCart();
   }
 
+  function handleOutsideCartClick(event) {
+    if (
+      isCartOpen &&
+      cartRef.current &&
+      !cartRef.current.contains(event.target)
+    ) {
+      closeCart();
+    }
+  }
+
+  function handleWindowResize() {
+    if (window.innerWidth >= 768) {
+      setIsMdOrLarger(true);
+    } else {
+      setIsMdOrLarger(false);
+    }
+  }
+
   return (
     <section className="flex justify-center bg-gray-50">
-      {isCartOpen && (
-        <div ref={cartRef}>
-          <CartDrawer />
+      {isCartOpen && isMdOrLarger && (
+        <div className="fixed inset-0 z-40">
+          <div
+            onClick={() => closeCart()}
+            className="absolute inset-0 bg-black/30"
+          ></div>
+
+          <div
+            className="absolute right-0 top-0 w-80 h-full bg-white shadow-lg z-50"
+            ref={cartRef}
+          >
+            <CartDrawer />
+          </div>
         </div>
       )}
       {productData && (

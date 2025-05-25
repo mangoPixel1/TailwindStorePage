@@ -194,13 +194,3 @@ function Cart() {
 }
 
 export default Cart;
-
-/*
-<input
-                      type="number"
-                      min={1}
-                      max={99}
-                      defaultValue={item.quantity}
-                      className="pl-5 py-1 mx-3 border border-gray-300 rounded-none"
-                    />
-*/

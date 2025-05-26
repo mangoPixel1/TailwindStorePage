@@ -6,7 +6,7 @@ function Header() {
   const [categories, setCategories] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const { getTotalQuantity } = useContext(CartContext);
+  const { toggleCart, getTotalQuantity } = useContext(CartContext);
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products`)
@@ -115,8 +115,11 @@ function Header() {
             <span className="cursor-pointer hover:text-slate-200 text-sm">
               <Link to="login">Login</Link>
             </span>
-            <span className="cursor-pointer hover:text-slate-200 text-sm whitespace-nowrap">
-              <Link to="cart">{`Cart (${getTotalQuantity()})`}</Link>
+            <span
+              className="cursor-pointer hover:text-slate-200 text-sm whitespace-nowrap"
+              onClick={() => toggleCart()}
+            >
+              {`Cart (${getTotalQuantity()})`}
             </span>
           </div>
         </div>
@@ -156,3 +159,12 @@ function Header() {
 }
 
 export default Header;
+
+/* 
+<span
+              className="cursor-pointer text-gray-800 hover:text-gray-700"
+              onClick={closeMenu}
+            >
+              <Link to="cart">{`Cart (${getTotalQuantity()})`}</Link>
+            </span>
+*/

@@ -28,7 +28,29 @@ function CartDrawer() {
             getTotalQuantity() === 1 ? `item` : `items`
           })`}</h1>
           <button className="cursor-pointer" onClick={() => closeCart()}>
-            X
+            <svg
+              width="25"
+              height="25"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <line
+                x1="4"
+                y1="4"
+                x2="16"
+                y2="16"
+                stroke="#787777"
+                strokeWidth="2"
+              />
+              <line
+                x1="16"
+                y1="4"
+                x2="4"
+                y2="16"
+                stroke="#787777"
+                strokeWidth="2"
+              />
+            </svg>
           </button>
         </div>
         <div className="flex flex-col gap-8">

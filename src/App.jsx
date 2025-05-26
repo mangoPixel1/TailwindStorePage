@@ -18,11 +18,13 @@ import Account from "./components/pages/Account";
 import Favorites from "./components/pages/Favorites";
 import Cart from "./components/pages/Cart";
 import ProductPage from "./components/pages/ProductPage";
+import CartDrawerWrapper from "./components/CartDrawerWrapper";
 
 function App() {
   return (
     <div className="flex flex-col min-h-screen ">
       <CartProvider>
+        <CartDrawerWrapper />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />

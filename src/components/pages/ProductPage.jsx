@@ -41,7 +41,7 @@ function ProductPage() {
 
     addItem(itemObj);
     setSelectedQuantity(1);
-    toggleCart();
+    //toggleCart();
 
     setShowToastNotif(true);
 
@@ -59,7 +59,7 @@ function ProductPage() {
   return (
     <>
       {showToastNotif && (
-        <div className="fixed top-0 w-full flex justify-between px-3 py-3 text-slate-700 bg-slate-300 border-2 border-slate-700">
+        <div className="fixed top-0 left-1/2 -translate-x-1/2 w-80 flex justify-between px-3 py-3 text-slate-700 bg-slate-300 border-2 border-slate-700">
           <div className="flex justify-center items-center">
             <svg
               width="24"

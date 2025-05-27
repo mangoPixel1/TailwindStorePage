@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../../CartContext";
+import { Link } from "react-router-dom";
 
 // Icons
 import { FaTrash } from "react-icons/fa";
@@ -34,14 +35,19 @@ function Cart() {
             {/* Desktop view */}
             <div className="hidden lg:grid lg:grid-cols-12 mb-2 text-sm">
               <div className="col-span-2 w-[75px] h-[75px] bg-white">
-                <img
-                  src={item.data.image}
-                  className="w-full h-full object-contain"
-                />
+                <Link to={`/product/${item.data.id}`}>
+                  <img
+                    src={item.data.image}
+                    className="w-full h-full object-contain cursor-pointer"
+                  />
+                </Link>
               </div>
               <div className="col-span-6 pr-8 flex gap-2 items-center">
                 <div className="flex flex-col items-start">
-                  <span>{item.data.title}</span>
+                  <Link to={`/product/${item.data.id}`}>
+                    <span>{item.data.title}</span>
+                  </Link>
+
                   <span className="capitalize text-gray-500 text-xs">
                     {item.data.category}
                   </span>
@@ -87,15 +93,22 @@ function Cart() {
             {/* Mobile view */}
             <div className="lg:hidden grid grid-cols-8 sm:grid-cols-12 ">
               <div className="col-span-2 sm:col-span-2 aspect-square bg-white">
-                <img
-                  src={item.data.image}
-                  className="w-full h-full object-contain"
-                />
+                <Link to={`/product/${item.data.id}`}>
+                  <img
+                    src={item.data.image}
+                    className="w-full h-full object-contain"
+                  />
+                </Link>
               </div>
 
               <div className="col-span-4 sm:col-span-7 flex flex-col justify-between flex-grow">
                 <div className="flex flex-col">
-                  <span className="text-xs sm:text-sm">{item.data.title}</span>
+                  <Link to={`/product/${item.data.id}`}>
+                    <span className="text-xs sm:text-sm">
+                      {item.data.title}
+                    </span>
+                  </Link>
+
                   <span className="hidden sm:block text-xs text-gray-500 capitalize">
                     {item.data.category}
                   </span>

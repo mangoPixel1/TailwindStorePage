@@ -57,10 +57,21 @@ function CartDrawer() {
           {cart.map((item, index) => (
             <div className="grid grid-cols-8" key={index}>
               <div className="col-span-2 w-[80px] h-[80px] bg-white">
-                <img src={item.data.image} className="object-contain" />
+                <Link
+                  to={`/product/${item.data.id}`}
+                  onClick={() => closeCart()}
+                >
+                  <img src={item.data.image} className="object-contain" />
+                </Link>
               </div>
               <div className="col-span-5 text-xs">
-                <p>{item.data.title}</p>
+                <Link
+                  to={`/product/${item.data.id}`}
+                  onClick={() => closeCart()}
+                >
+                  <p>{item.data.title}</p>
+                </Link>
+
                 <p>{`$${item.data.price.toFixed(2)}`}</p>
                 <p>{`x${item.quantity}`}</p>
               </div>

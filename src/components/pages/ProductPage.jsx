@@ -21,7 +21,7 @@ function ProductPage() {
     fetch(`https://fakestoreapi.com/products/${product}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         setProductData(data);
       });
   }, [product]);

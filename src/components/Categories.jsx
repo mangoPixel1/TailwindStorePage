@@ -49,7 +49,9 @@ function Categories() {
         Shop by Category
       </h1>
       <div className="px-5 sm:px-0 grid grid-cols-1 gap-14 sm:grid-cols-4 md:gap-10 lg:max-w-3/4 lg:mx-auto">
-        {categories &&
+        {!categories ? (
+          <p>Loading...</p>
+        ) : (
           categories.map((cat, index) => (
             <Link to={`category/${cat.name.toLowerCase()}`} key={index}>
               <div
@@ -69,7 +71,8 @@ function Categories() {
                 </span>
               </div>
             </Link>
-          ))}
+          ))
+        )}
       </div>
     </section>
   );

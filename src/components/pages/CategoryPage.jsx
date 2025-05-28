@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { FaRegStarHalfStroke } from "react-icons/fa6";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 function Category() {
   let { category } = useParams(); // Extract category name
   const [categoryImage, setCategoryImage] = useState(); // Background image for header
   const [products, setProducts] = useState([]); // Sets products for the current category
+  const [isLoading, setIsLoading] = useState(true);
 
   //console.log("Category from useParams:", category); // Debugging log
 
@@ -28,6 +31,15 @@ function Category() {
 
   useEffect(() => {
     setCategoryImage(getCategoryImage(category));
+
+    // simulate 4 second delay
+    /*const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 4000);
+
+    return () => {
+      clearTimeout(timer);
+    };*/
   }, []);
 
   useEffect(() => {
@@ -35,7 +47,9 @@ function Category() {
       .then((response) => response.json())
       .then((data) => {
         setProducts(data);
-        console.log(data);
+        setIsLoading(false);
+
+        //console.log(data);
       })
       .catch((error) => console.error(error));
 
@@ -55,45 +69,60 @@ function Category() {
       </section>
       <section className="flex justify-center px-5 py-5 bg-gray-50 text-gray-600">
         <div className="flex flex-col justify-center lg:max-w-6xl">
-          <p className="mb-5">{`Showing all ${products.length} results`}</p>
+          <p className="mb-5">
+            {!isLoading && `Showing all ${products.length} results`}
+          </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
-            {products.map((product) => (
-              <div key={product.id}>
-                <div className="mb-5 aspect-square bg-white">
-                  <Link to={`/product/${product.id}`}>
-                    <img
-                      src={product.image}
-                      className="w-full h-full object-contain"
+            {isLoading
+              ? Array.from({ length: 6 }, (_, i) => (
+                  <div key={i} className="aspect-square w-full">
+                    <Skeleton
+                      containerClassName="w-full h-full"
+                      className="w-full h-44 sm:h-64 md:h-72 lg:max-h-96 rounded-lg"
                     />
-                  </Link>
-                </div>
-
-                <div className="flex flex-col">
-                  <Link to={`/product/${product.id}`}>
-                    <span className="font-medium text-sm">{product.title}</span>
-                  </Link>
-                  <span className="font-semibold text-md text-indigo-950">{`$${product.price.toFixed(
-                    2
-                  )}`}</span>
-                  <div className="flex items-center mt-2 md:mt-0 text-sm text-gray-600">
-                    {Array.from({ length: 5 }, (_, i) => {
-                      const roundedRating =
-                        Math.round(product.rating.rate * 2) / 2;
-                      const starNumber = i + 1;
-                      if (roundedRating >= starNumber) {
-                        return <FaStar key={i} color="#ffc107" />; // yellow star
-                      }
-                      if (roundedRating + 0.5 >= starNumber) {
-                        return <FaRegStarHalfStroke key={i} color="#ffc107" />; // half star
-                      } else {
-                        return <FaStar key={i} color="#e4e5e9" />;
-                      }
-                    })}
-                    <span className="ml-2">{`(${product.rating.count})`}</span>
                   </div>
-                </div>
-              </div>
-            ))}
+                ))
+              : products.map((product) => (
+                  <div key={product.id}>
+                    <div className="mb-5 aspect-square bg-white">
+                      <Link to={`/product/${product.id}`}>
+                        <img
+                          src={product.image}
+                          className="w-full h-full object-contain"
+                        />
+                      </Link>
+                    </div>
+
+                    <div className="flex flex-col">
+                      <Link to={`/product/${product.id}`}>
+                        <span className="font-medium text-sm">
+                          {product.title}
+                        </span>
+                      </Link>
+                      <span className="font-semibold text-md text-indigo-950">{`$${product.price.toFixed(
+                        2
+                      )}`}</span>
+                      <div className="flex items-center mt-2 md:mt-0 text-sm text-gray-600">
+                        {Array.from({ length: 5 }, (_, i) => {
+                          const roundedRating =
+                            Math.round(product.rating.rate * 2) / 2;
+                          const starNumber = i + 1;
+                          if (roundedRating >= starNumber) {
+                            return <FaStar key={i} color="#ffc107" />; // yellow star
+                          }
+                          if (roundedRating + 0.5 >= starNumber) {
+                            return (
+                              <FaRegStarHalfStroke key={i} color="#ffc107" />
+                            ); // half star
+                          } else {
+                            return <FaStar key={i} color="#e4e5e9" />;
+                          }
+                        })}
+                        <span className="ml-2">{`(${product.rating.count})`}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
           </div>
         </div>
       </section>

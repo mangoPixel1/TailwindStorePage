@@ -54,8 +54,3 @@ function App() {
 }
 
 export default App;
-
-/*
-<Route path="/account" element={<Account />} />
-				<Route path="/favorites" element={<Favorites />} />
-*/

@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 
 function CheckoutPage() {
   return (
-    <section className="px-5">
-      <header className="md:px-5 py-5">
-        <h1 className="mb-3 text-2xl text-gray-700 font-bold">Fake Store</h1>
+    <section className="px-5 md:px-10">
+      <header className="py-5">
+        <h1 className="mb-3 text-2xl min-[600px]:text-3xl text-gray-700 font-bold">
+          Fake Store
+        </h1>
         <div className="flex gap-2 text-sm text-gray-500">
           <div>
             <span className="mr-2">{`Cart`}</span>
@@ -23,8 +25,9 @@ function CheckoutPage() {
 
       <hr className="mb-5" />
 
-      <div>
-        <h1 className="text-xl text-gray-800 font-semibold">
+      {/* Express Checkout */}
+      <div className="mb-5 max-w-2xl">
+        <h1 className="text-lg text-gray-800 font-semibold">
           Express Checkout
         </h1>
         <div className="grid grid-cols-3 gap-2">
@@ -40,72 +43,123 @@ function CheckoutPage() {
         </div>
       </div>
 
-      <div>
-        <h1 className="text-xl text-gray-800 font-semibold">
+      {/* Contact Info */}
+      <div className="mb-5">
+        <h1 className="mb-2 text-lg text-gray-800 font-semibold">
           Contact Information
         </h1>
-        <input
-          type="email"
-          placeholder="Email"
-          className="block border-2 border-gray-300 py-1 rounded-sm"
-        />
-        <input type="checkbox" id="opt-in" name="opt-in" value="true" />
-        <label htmlFor="opt-in" className="text-sm text-gray-600">
-          Email me with news and offers
-        </label>
+        <div className="mb-4">
+          <input
+            id="contact-email"
+            type="email"
+            placeholder="Email"
+            className="block w-full max-w-md border-2 border-gray-300 py-1 rounded-sm"
+          />
+          <div className="mt-2">
+            <input
+              type="checkbox"
+              id="opt-in-email"
+              name="opt-in-email"
+              value="true"
+            />
+            <label
+              htmlFor="opt-in-email"
+              className="ml-2 text-xs text-gray-600"
+            >
+              Email me with news and offers
+            </label>
+          </div>
+        </div>
+        <div>
+          <input
+            id="contact-phone"
+            type="tel"
+            placeholder="Phone number"
+            className="block w-full max-w-md border-2 border-gray-300 py-1 rounded-sm"
+          />
+          <div className="mt-2">
+            <input
+              type="checkbox"
+              id="opt-in-text"
+              name="opt-in-text"
+              value="true"
+            />
+            <label htmlFor="opt-in-text" className="ml-2 text-xs text-gray-600">
+              I agree to receive order updates and promotional texts. Message &
+              data rates may apply.
+            </label>
+          </div>
+        </div>
       </div>
 
-      <div>
-        <h1 className="text-xl text-gray-800 font-semibold">
+      {/* Shipping Address */}
+      <div className="mb-5">
+        <h1 className="mb-2 text-lg text-gray-800 font-semibold">
           Shipping Address
         </h1>
-        <input
-          type="text"
-          placeholder="Country/region"
-          className="block border-2 border-gray-300 py-1 rounded-sm"
-        />
-        <input
-          type="text"
-          placeholder="First name"
-          className="block border-2 border-gray-300 py-1 rounded-sm"
-        />
-        <input
-          type="text"
-          placeholder="Last name"
-          className="block border-2 border-gray-300 py-1 rounded-sm"
-        />
-        <input
-          type="text"
-          placeholder="Address"
-          className="block border-2 border-gray-300 py-1 rounded-sm"
-        />
-        <input
-          type="text"
-          placeholder="Apartment, suite, etc. (optional)"
-          className="block border-2 border-gray-300 py-1 rounded-sm"
-        />
-        <input
-          type="text"
-          placeholder="City"
-          className="block border-2 border-gray-300 py-1 rounded-sm"
-        />
-        <input
-          type="text"
-          placeholder="State"
-          className="block border-2 border-gray-300 py-1 rounded-sm"
-        />
-        <input
-          type="text"
-          placeholder="ZIP code"
-          className="block border-2 border-gray-300 py-1 rounded-sm"
-        />
-        <input
-          type="text"
-          placeholder="Phone (optional)"
-          className="block border-2 border-gray-300 py-1 rounded-sm"
-        />
+        <div className="space-y-3">
+          <input
+            id="region"
+            type="text"
+            placeholder="Country/region"
+            className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+          />
+          <div className="flex w-full gap-2">
+            <input
+              id="first-name"
+              type="text"
+              placeholder="First name"
+              className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+            />
+            <input
+              id="last-name"
+              type="text"
+              placeholder="Last name"
+              className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+            />
+          </div>
+
+          <input
+            id="address-1"
+            type="text"
+            placeholder="Address"
+            className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+          />
+          <input
+            id="address-2"
+            type="text"
+            placeholder="Apartment, suite, etc. (optional)"
+            className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+          />
+          <input
+            id="city"
+            type="text"
+            placeholder="City"
+            className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+          />
+          <input
+            id="state"
+            type="text"
+            placeholder="State"
+            className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+          />
+          <input
+            id="zip"
+            type="text"
+            placeholder="ZIP code"
+            className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+          />
+          <input
+            id="phone"
+            type="text"
+            placeholder="Phone (optional)"
+            className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+          />
+        </div>
       </div>
-      <button>Continue to Payment</button>
+      <button className="mb-5 block w-full px-3 py-2 rounded-sm text-white bg-slate-500 hover:bg-slate-600 transition duration-300 cursor-pointer">
+        Continue to Payment
+      </button>
     </section>
   );
 }

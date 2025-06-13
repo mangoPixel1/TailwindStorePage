@@ -159,12 +159,3 @@ function Header() {
 }
 
 export default Header;
-
-/* 
-<span
-              className="cursor-pointer text-gray-800 hover:text-gray-700"
-              onClick={closeMenu}
-            >
-              <Link to="cart">{`Cart (${getTotalQuantity()})`}</Link>
-            </span>
-*/

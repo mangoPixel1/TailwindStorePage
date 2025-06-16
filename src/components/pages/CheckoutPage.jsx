@@ -78,7 +78,7 @@ function CheckoutPage() {
               id="contact-email"
               type="email"
               placeholder="Email"
-              className="block w-full border-2 border-gray-300 py-1 rounded-sm"
+              className="block w-full border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
             />
             <div className="mt-2">
               <input
@@ -100,7 +100,7 @@ function CheckoutPage() {
               id="contact-phone"
               type="tel"
               placeholder="Phone number"
-              className="block w-full border-2 border-gray-300 py-1 rounded-sm"
+              className="block w-full border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
             />
             <div className="mt-2">
               <input
@@ -130,20 +130,20 @@ function CheckoutPage() {
               id="region"
               type="text"
               placeholder="Country/region"
-              className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+              className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
             />
             <div className="flex w-full gap-2">
               <input
                 id="first-name"
                 type="text"
                 placeholder="First name"
-                className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+                className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
               />
               <input
                 id="last-name"
                 type="text"
                 placeholder="Last name"
-                className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+                className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
               />
             </div>
 
@@ -151,37 +151,37 @@ function CheckoutPage() {
               id="address-1"
               type="text"
               placeholder="Address"
-              className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+              className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
             />
             <input
               id="address-2"
               type="text"
               placeholder="Apartment, suite, etc. (optional)"
-              className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+              className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
             />
             <input
               id="city"
               type="text"
               placeholder="City"
-              className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+              className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
             />
             <input
               id="state"
               type="text"
               placeholder="State"
-              className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+              className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
             />
             <input
               id="zip"
               type="text"
               placeholder="ZIP code"
-              className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+              className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
             />
             <input
               id="phone"
               type="text"
               placeholder="Phone (optional)"
-              className="w-full block border-2 border-gray-300 py-1 rounded-sm"
+              className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
             />
           </div>
         </div>
@@ -193,34 +193,61 @@ function CheckoutPage() {
       {/* Order Summary - Right Column */}
       <div className="mb-5">
         <div className="p-5 border border-gray-200 rounded-md">
-          <h2 className="font-semibold">Order Summary</h2>
+          <h2 className="mb-4 font-semibold">Order Summary</h2>
           {cartItems.map((item) => (
-            <div key={item.id}>
-              <span>{item.title}</span>
-              <span>{item.category}</span>
-              <span>{`Qty: ${item.quantity}`}</span>
-              <span>{item.price}</span>
+            <div key={item.id} className="flex justify-between mb-4">
+              <div className="flex">
+                <div className="mr-4 w-16 h-16 bg-gray-200 border-gray-300 border rounded-md"></div>
+                <div className="">
+                  <span className="block text-sm font-medium">
+                    {item.title}
+                  </span>
+                  <span className="block text-xs text-gray-600">
+                    {item.category}
+                  </span>
+                  <span className="block text-sm text-gray-600">{`Qty: ${item.quantity}`}</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col justify-end">
+                <span className="block text-sm font-medium">{`$${item.price.toFixed(
+                  2
+                )}`}</span>
+              </div>
             </div>
           ))}
-          <input type="text" placeholder="Gift card or discount code" />
-          <button>Apply</button>
 
-          <hr />
-
-          <div className="flex justify-between">
-            <span className="block">Subtotal</span>
-            <span className="block">$229.96</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="block">Discount</span>
-            <span className="block">$0</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="block">Estimated Taxes</span>
-            <span className="block">$18.40</span>
+          <div className="mt-6 mb-4">
+            <input
+              id="discount-code"
+              type="text"
+              placeholder="Gift card or discount code"
+              className="w-56 border-2 border-gray-300 rounded-sm mr-2 placeholder:text-sm pl-2 py-1 text-sm"
+            />
+            <button className="bg-gray-200 hover:bg-gray-300 transition duration-300 cursor-pointer text-sm rounded-sm px-4 py-1">
+              Apply
+            </button>
+            {/* Show applied codes here */}
           </div>
 
-          <hr />
+          <hr className="border-gray-200 mt-5 mb-4" />
+
+          <div className="text-sm space-y-2">
+            <div className="flex justify-between">
+              <span className="block text-gray-700">Subtotal</span>
+              <span className="block font-medium">$229.96</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="block text-gray-700">Discount</span>
+              <span className="block font-medium">$0.00</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="block text-gray-700">Estimated Taxes</span>
+              <span className="block font-medium">$18.40</span>
+            </div>
+          </div>
+
+          <hr className="border-gray-200 my-4" />
 
           <div className="flex justify-between font-semibold">
             <span className="block">Total</span>

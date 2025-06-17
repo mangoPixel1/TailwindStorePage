@@ -3,7 +3,7 @@
 An ecommerce store front built with **React** and **Tailwind CSS**, powered by the [FakeStoreAPI](https://fakestoreapi.com/).  
 
 
-🔗 [Live Demo](https://your-live-demo-link.com)
+🔗 [Live Demo](https://tailwind-store-page.vercel.app/)
 
 ---
 

@@ -12,8 +12,8 @@ An ecommerce store front built with **React** and **Tailwind CSS**, powered by t
 ![Cart Page](./screenshots/cart.png)
 
 <p float="left">
-  <img src="./screenshots/cart.png" width="48%" />
-  <img src="./screenshots/cart.png" width="48%" />
+  <img src="./screenshots/category.png" width="48%" />
+  <img src="./screenshots/product.png" width="48%" />
 </p>
 
 ---

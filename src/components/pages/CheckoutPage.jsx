@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../../CartContext";
 
 function CheckoutPage() {
+  const { cart, getTotalQuantity, getTotalPrice } = useContext(CartContext);
+
   const cartItems = [
     {
       id: 1,
@@ -10,20 +13,6 @@ function CheckoutPage() {
       quantity: 2,
       price: 49.98,
     },
-    {
-      id: 2,
-      title: "Slim Fit Jeans",
-      category: "Men's Clothing",
-      quantity: 1,
-      price: 49.99,
-    },
-    {
-      id: 3,
-      title: "Wireless Headphones",
-      category: "Electronics",
-      quantity: 1,
-      price: 129.99,
-    },
   ];
 
   return (
@@ -31,18 +20,25 @@ function CheckoutPage() {
       <div className="lg:grid lg:grid-cols-8 lg:gap-12 w-full max-w-7xl">
         <div className="lg:col-span-5 lg:mb-20">
           <header className="py-5">
-            <h1 className="mb-3 text-2xl min-[600px]:text-3xl text-gray-700 font-bold">
-              Fake Store
-            </h1>
+            <Link to="/">
+              <h1 className="mb-3 text-2xl min-[600px]:text-3xl text-gray-700 font-bold">
+                Fake Store
+              </h1>
+            </Link>
+
             <div className="flex gap-2 text-sm text-gray-500">
-              <div>
-                <span className="mr-2">{`Cart`}</span>
-                <span>{`>`}</span>
-              </div>
+              <Link to="/cart">
+                <div>
+                  <span className="mr-2">{`Cart`}</span>
+                  <span>{`>`}</span>
+                </div>
+              </Link>
+
               <div>
                 <span className="mr-2 text-gray-700 font-medium">{`Shipping`}</span>
                 <span>{`>`}</span>
               </div>
+
               <div>
                 <span>{`Payment`}</span>
               </div>
@@ -197,23 +193,23 @@ function CheckoutPage() {
         <div className="lg:col-span-3 lg:mt-35 my-15">
           <div className="p-5 border border-gray-200 rounded-md">
             <h2 className="mb-4 font-semibold">Order Summary</h2>
-            {cartItems.map((item) => (
-              <div key={item.id} className="flex justify-between mb-4">
+            {cart.map((item) => (
+              <div
+                key={item.data.id}
+                className="flex justify-between sm:flex-row mb-4"
+              >
                 <div className="flex">
-                  <div className="mr-4 w-16 h-16 bg-gray-200 border-gray-300 border rounded-md"></div>
-                  <div className="">
+                  <div className="mr-4 w-16 h-16 bg-gray-200 border-gray-300 border rounded-md flex-shrink-0"></div>
+                  <div>
                     <span className="block text-sm font-medium">
-                      {item.title}
-                    </span>
-                    <span className="block text-xs text-gray-600">
-                      {item.category}
+                      {item.data.title}
                     </span>
                     <span className="block text-sm text-gray-600">{`Qty: ${item.quantity}`}</span>
                   </div>
                 </div>
 
                 <div className="flex flex-col justify-end">
-                  <span className="block text-sm font-medium">{`$${item.price.toFixed(
+                  <span className="block text-sm font-medium">{`$${item.data.price.toFixed(
                     2
                   )}`}</span>
                 </div>

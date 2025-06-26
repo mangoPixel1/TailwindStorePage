@@ -174,7 +174,7 @@ function Cart() {
 
           <div>
             <div className="flex justify-between">
-              <span>Total price:</span>
+              <span>Subtotal:</span>
               <span>{`$${getTotalPrice().toFixed(2)}`}</span>
             </div>
             <div className="flex justify-between">

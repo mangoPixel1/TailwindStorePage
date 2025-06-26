@@ -5,16 +5,6 @@ import { CartContext } from "../../CartContext";
 function CheckoutPage() {
   const { cart, getTotalQuantity, getTotalPrice } = useContext(CartContext);
 
-  const cartItems = [
-    {
-      id: 1,
-      title: "Premium Cotton T-Shirt",
-      category: "Men's Clothing",
-      quantity: 2,
-      price: 49.98,
-    },
-  ];
-
   return (
     <section className="px-5 md:px-10 flex justify-center">
       <div className="lg:grid lg:grid-cols-8 lg:gap-12 w-full max-w-7xl">
@@ -46,6 +36,7 @@ function CheckoutPage() {
           </header>
 
           <hr className="border border-gray-200 mb-5" />
+
           {/* Shipping Form - Left Column */}
           <div>
             {/* Express Checkout */}
@@ -173,12 +164,6 @@ function CheckoutPage() {
                   id="zip"
                   type="text"
                   placeholder="ZIP code"
-                  className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
-                />
-                <input
-                  id="phone"
-                  type="text"
-                  placeholder="Phone (optional)"
                   className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
                 />
               </div>

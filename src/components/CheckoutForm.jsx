@@ -1,73 +1,78 @@
 import { useState } from "react";
+import CheckoutFormInput from "./CheckoutFormInput";
 
 function CheckoutForm() {
   const [inputs, setInputs] = useState([
     {
       id: 1,
+      type: "email",
       name: "email",
       placeholder: "Email",
-      type: "text",
-      width: "full",
     },
     {
       id: 2,
+      type: "tel",
       name: "phone",
       placeholder: "Phone number",
-      width: "full",
     },
     {
       id: 3,
+      type: "text",
       name: "region",
       placeholder: "Country/region",
-      width: "full",
     },
     {
       id: 4,
-      name: "firstName",
-      placeholder: "First name",
-      width: "full",
+      type: "text",
+      name: "name",
+      placeholder: "Name",
     },
     {
       id: 5,
-      name: "lastName",
-      placeholder: "Last name",
-      width: "full",
+      type: "text",
+      name: "address",
+      placeholder: "Address",
     },
     {
       id: 6,
-      name: "address",
-      placeholder: "Address",
-      width: "full",
+      type: "text",
+      name: "ext",
+      placeholder: "Apartment, suite, etc. (optional)",
     },
     {
       id: 7,
-      name: "ext",
-      placeholder: "Apartment, suite, etc. (optional)",
-      width: "full",
+      type: "text",
+      name: "city",
+      placeholder: "City",
     },
     {
       id: 8,
-      name: "city",
-      placeholder: "City",
-      width: "full",
+      type: "text",
+      name: "state",
+      placeholder: "State",
     },
     {
       id: 9,
-      name: "state",
-      placeholder: "State",
-      width: "full",
-    },
-    {
-      id: 10,
+      type: "text",
       name: "zip",
       placeholder: "ZIP code",
-      width: "full",
     },
   ]);
-  const [values, setValues] = useState({});
+  const [values, setValues] = useState({
+    email: "",
+    phone: "",
+    region: "",
+    firstName: "",
+    lastName: "",
+    address: "",
+    ext: "",
+    city: "",
+    state: "",
+    zip: "",
+  });
 
   return (
-    <div>
+    <form>
       {/* Express Checkout */}
       <div className="mb-5 max-w-2xl">
         <h1 className="text-lg text-gray-800 font-semibold">
@@ -95,13 +100,14 @@ function CheckoutForm() {
           <input
             id="contact-email"
             type="email"
+            name="contact-email"
             placeholder="Email"
             className="block w-full border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
           />
           <div className="mt-2">
             <input
-              type="checkbox"
               id="opt-in-email"
+              type="checkbox"
               name="opt-in-email"
               value="true"
             />
@@ -117,13 +123,14 @@ function CheckoutForm() {
           <input
             id="contact-phone"
             type="tel"
+            name="contact-phone"
             placeholder="Phone number"
             className="block w-full border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
           />
           <div className="mt-2">
             <input
-              type="checkbox"
               id="opt-in-text"
+              type="checkbox"
               name="opt-in-text"
               value="true"
             />
@@ -141,26 +148,43 @@ function CheckoutForm() {
           Shipping Address
         </h1>
         <div className="space-y-3">
-          <input
+          {/* map the inputs using CheckoutForm */}
+          {inputs
+            .filter((input) => input.name !== "email" && input.name !== "phone")
+            .map((input) => (
+              <CheckoutFormInput key={input.id} {...input} />
+            ))}
+        </div>
+      </div>
+      <button className="mb-5 block w-full px-3 py-2 rounded-sm text-white bg-slate-500 hover:bg-slate-600 transition duration-300 cursor-pointer">
+        Continue to Payment
+      </button>
+    </form>
+  );
+}
+
+export default CheckoutForm;
+
+/*
+inputs.map((input) => (
+            <CheckoutFormInput key={input.id} {...input} />
+          ))
+*/
+
+/* 
+<input
             id="region"
             type="text"
             placeholder="Country/region"
             className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
           />
-          <div className="flex w-full gap-2">
-            <input
-              id="first-name"
-              type="text"
-              placeholder="First name"
-              className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
-            />
-            <input
-              id="last-name"
-              type="text"
-              placeholder="Last name"
-              className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
-            />
-          </div>
+
+          <input
+            id="name"
+            type="text"
+            placeholder="Name"
+            className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
+          />
 
           <input
             id="address-1"
@@ -168,12 +192,14 @@ function CheckoutForm() {
             placeholder="Address"
             className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
           />
+
           <input
             id="address-2"
             type="text"
             placeholder="Apartment, suite, etc. (optional)"
             className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
           />
+
           <input
             id="city"
             type="text"
@@ -186,19 +212,11 @@ function CheckoutForm() {
             placeholder="State"
             className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
           />
+
           <input
             id="zip"
             type="text"
             placeholder="ZIP code"
             className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
           />
-        </div>
-      </div>
-      <button className="mb-5 block w-full px-3 py-2 rounded-sm text-white bg-slate-500 hover:bg-slate-600 transition duration-300 cursor-pointer">
-        Continue to Payment
-      </button>
-    </div>
-  );
-}
-
-export default CheckoutForm;
+*/

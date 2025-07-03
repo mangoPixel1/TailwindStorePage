@@ -111,7 +111,8 @@ function CheckoutForm() {
 	});
 
 	function handleInputChange(e) {
-		setValues({ ...values, [e.target.name]: e.target.value });
+		const { name, type, value, checked } = e.target;
+		setValues({ ...values, [name]: type === "checkbox" ? checked : value });
 	}
 
 	function handleSubmit(e) {
@@ -136,10 +137,10 @@ function CheckoutForm() {
 			<div className="mb-5">
 				<h1 className="mb-2 text-lg text-gray-800 font-semibold">Contact Information</h1>
 				<div className="mb-4">
-					<CheckoutFormInput {...inputs[0]} value={values["email"]} handleInputChange={handleInputChange} />
+					<CheckoutFormInput {...inputs[0]} value={values[inputs[0].name]} handleInputChange={handleInputChange} />
 
 					<div className="mt-2">
-						<input id="optInEmail" type="checkbox" name="optInEmail" value="true" />
+						<CheckoutFormInput {...inputs[1]} value={values[inputs[1].name]} handleInputChange={handleInputChange} />
 
 						<label htmlFor="optInEmail" className="ml-2 text-xs text-gray-600">
 							Email me with news and offers
@@ -148,9 +149,9 @@ function CheckoutForm() {
 				</div>
 
 				<div>
-					<CheckoutFormInput {...inputs[2]} value={values["phone"]} handleInputChange={handleInputChange} />
+					<CheckoutFormInput {...inputs[2]} value={values[inputs[2].name]} handleInputChange={handleInputChange} />
 					<div className="mt-2">
-						<input id="optInText" type="checkbox" name="opt-in-text" value="true" />
+						<CheckoutFormInput {...inputs[3]} value={values[inputs[3].name]} handleInputChange={handleInputChange} />
 
 						<label htmlFor="optInText" className="ml-2 text-xs text-gray-600">
 							I agree to receive order updates and promotional texts. Message & data rates may apply.

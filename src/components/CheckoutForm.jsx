@@ -92,7 +92,7 @@ function CheckoutForm() {
 			placeholder: "ZIP code",
 			autoComplete: "postal-code",
 			pattern: "^\\d{5}(-\\d{4})?$",
-			errorMessage: "Enter a 5-digit ZIP code or ZIP+4 (e.g., 12345 or 12345-6789)"
+			errorMessage: "Enter a 5-digit ZIP code (e.g., 12345)"
 		}
 	]);
 
@@ -140,22 +140,14 @@ function CheckoutForm() {
 					<CheckoutFormInput {...inputs[0]} value={values[inputs[0].name]} handleInputChange={handleInputChange} />
 
 					<div className="mt-2">
-						<CheckoutFormInput {...inputs[1]} value={values[inputs[1].name]} handleInputChange={handleInputChange} />
-
-						<label htmlFor="optInEmail" className="ml-2 text-xs text-gray-600">
-							Email me with news and offers
-						</label>
+						<CheckoutFormInput {...inputs[1]} value={values[inputs[1].name]} handleInputChange={handleInputChange} label="Email me with news and offers" />
 					</div>
 				</div>
 
 				<div>
 					<CheckoutFormInput {...inputs[2]} value={values[inputs[2].name]} handleInputChange={handleInputChange} />
 					<div className="mt-2">
-						<CheckoutFormInput {...inputs[3]} value={values[inputs[3].name]} handleInputChange={handleInputChange} />
-
-						<label htmlFor="optInText" className="ml-2 text-xs text-gray-600">
-							I agree to receive order updates and promotional texts. Message & data rates may apply.
-						</label>
+						<CheckoutFormInput {...inputs[3]} value={values[inputs[3].name]} handleInputChange={handleInputChange} label="I agree to receive order updates and promotional texts. Message & data rates may apply." />
 					</div>
 				</div>
 			</div>

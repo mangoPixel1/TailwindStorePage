@@ -24,11 +24,12 @@ import Favorites from "./components/pages/Favorites";
 import Cart from "./components/pages/Cart";
 import ProductPage from "./components/pages/ProductPage";
 import CartDrawerWrapper from "./components/CartDrawerWrapper";
-import CheckoutPage from "./components/pages/CheckoutPage";
+import CheckoutShipping from "./components/pages/CheckoutShipping";
+import CheckoutPayment from "./components/pages/CheckoutPayment";
 
 function App() {
   const location = useLocation();
-  const noLayoutPaths = ["/checkout"];
+  const noLayoutPaths = ["/checkout/shipping", "/checkout/payment"];
 
   const isNoLayout = noLayoutPaths.includes(location.pathname);
 
@@ -42,7 +43,8 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/checkout/shipping" element={<CheckoutShipping />} />
+          <Route path="/checkout/payment" element={<CheckoutPayment />} />
           <Route path="/category/:category" element={<CategoryPage />} />
           <Route path="/product/:product" element={<ProductPage />} />
           <Route path="*" element={<NotFound />} />

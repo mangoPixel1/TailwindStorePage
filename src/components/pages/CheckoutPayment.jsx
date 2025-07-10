@@ -1,9 +1,9 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../CartContext";
-import CheckoutForm from "../CheckoutForm";
+import CheckoutForm from "../ShippingForm";
 
-function CheckoutPage() {
+function CheckoutPayment() {
   const { cart, getTotalQuantity, getTotalPrice } = useContext(CartContext);
 
   return (
@@ -26,20 +26,37 @@ function CheckoutPage() {
               </Link>
 
               <div>
-                <span className="mr-2 text-gray-700 font-medium">{`Shipping`}</span>
+                <span>{`Shipping`}</span>
                 <span>{`>`}</span>
               </div>
 
               <div>
-                <span>{`Payment`}</span>
+                <span className="mr-2 text-gray-700 font-medium">{`Payment`}</span>
               </div>
             </div>
           </header>
 
           <hr className="border border-gray-200 mb-5" />
 
+          {/* Express Checkout */}
+          <div className="mb-5 max-w-2xl">
+            <h1 className="text-lg text-gray-800 font-semibold">
+              Express Checkout
+            </h1>
+            <div className="grid grid-cols-3 gap-2">
+              <button className="block cursor-pointer py-2 w-full text-sm text-white bg-purple-900">
+                Affirm
+              </button>
+              <button className="block cursor-pointer py-2 w-full text-sm bg-amber-600">
+                Amazon Pay
+              </button>
+              <button className="block cursor-pointer py-2 w-full text-sm text-white bg-blue-900">
+                PayPal
+              </button>
+            </div>
+          </div>
+
           {/* Shipping Form - Left Column */}
-          <CheckoutForm />
         </div>
 
         {/* Order Summary - Right Column */}
@@ -69,25 +86,16 @@ function CheckoutPage() {
               </div>
             ))}
 
-            <div className="mt-6 mb-4">
-              <input
-                id="discount-code"
-                type="text"
-                placeholder="Gift card or discount code"
-                className="w-56 border-2 border-gray-300 rounded-sm mr-2 placeholder:text-sm pl-2 py-1 text-sm"
-              />
-              <button className="bg-gray-200 hover:bg-gray-300 transition duration-300 cursor-pointer text-sm rounded-sm px-4 py-1">
-                Apply
-              </button>
-              {/* Show applied codes here */}
-            </div>
-
             <hr className="border-gray-200 mt-5 mb-4" />
 
             <div className="text-sm space-y-2">
               <div className="flex justify-between">
                 <span className="block text-gray-700">Subtotal</span>
                 <span className="block font-medium">$229.96</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="block text-gray-700">Shipping</span>
+                <span className="block font-medium">$4.99</span>
               </div>
               <div className="flex justify-between">
                 <span className="block text-gray-700">Discount</span>
@@ -135,4 +143,4 @@ function CheckoutPage() {
   );
 }
 
-export default CheckoutPage;
+export default CheckoutPayment;

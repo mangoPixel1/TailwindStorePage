@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function CheckoutFormInput(props) {
+function ShippingFormInput(props) {
   const { handleInputChange, errorMessage, label, ...inputProps } = props;
 
   const [blurred, setBlurred] = useState(false);
@@ -68,4 +68,4 @@ function CheckoutFormInput(props) {
   );
 }
 
-export default CheckoutFormInput;
+export default ShippingFormInput;

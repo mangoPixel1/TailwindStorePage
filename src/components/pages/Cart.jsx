@@ -197,7 +197,7 @@ function Cart() {
             <span>Total Cost</span>
             <span>{`$${getTotalPrice().toFixed(2)}`}</span>
           </div>
-          <Link to="/checkout">
+          <Link to="/checkout/shipping">
             <button className="block w-full px-3 py-2 rounded-sm text-white bg-slate-500 hover:bg-slate-600 transition duration-300 cursor-pointer">
               Check Out
             </button>

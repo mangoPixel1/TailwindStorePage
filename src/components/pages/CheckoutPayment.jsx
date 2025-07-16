@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../CartContext";
-import CheckoutForm from "../ShippingForm";
+import PaymentForm from "../PaymentForm";
 
 function CheckoutPayment() {
   const { cart, getTotalQuantity, getTotalPrice } = useContext(CartContext);
@@ -60,6 +60,11 @@ function CheckoutPayment() {
                 PayPal
               </button>
             </div>
+          </div>
+
+          <div className="mb-5 max-w-2xl">
+            <h1 className="text-lg text-gray-800 font-semibold">Payment</h1>
+            <PaymentForm />
           </div>
 
           {/* Shipping Form - Left Column */}

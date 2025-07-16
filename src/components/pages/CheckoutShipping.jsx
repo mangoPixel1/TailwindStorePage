@@ -6,6 +6,10 @@ import CheckoutForm from "../ShippingForm";
 function CheckoutShipping() {
   const { cart, getTotalQuantity, getTotalPrice } = useContext(CartContext);
 
+  function calculateTax(total) {
+    return total * 0.085;
+  }
+
   return (
     <section className="px-5 md:px-10 flex justify-center">
       <div className="lg:grid lg:grid-cols-8 lg:gap-12 w-full max-w-7xl">
@@ -87,7 +91,7 @@ function CheckoutShipping() {
             <div className="text-sm space-y-2">
               <div className="flex justify-between">
                 <span className="block text-gray-700">Subtotal</span>
-                <span className="block font-medium">$229.96</span>
+                <span className="block font-medium">{`$${getTotalPrice()}`}</span>
               </div>
               <div className="flex justify-between">
                 <span className="block text-gray-700">Discount</span>
@@ -95,7 +99,9 @@ function CheckoutShipping() {
               </div>
               <div className="flex justify-between">
                 <span className="block text-gray-700">Estimated Taxes</span>
-                <span className="block font-medium">$18.40</span>
+                <span className="block font-medium">{`$${(
+                  getTotalPrice() * 0.085
+                ).toFixed(2)}`}</span>
               </div>
             </div>
 
@@ -103,7 +109,9 @@ function CheckoutShipping() {
 
             <div className="flex justify-between font-semibold">
               <span className="block">Total</span>
-              <span className="block">$18.40</span>
+              <span className="block">{`$${(
+                getTotalPrice() + calculateTax(getTotalPrice())
+              ).toFixed(2)}`}</span>
             </div>
           </div>
 

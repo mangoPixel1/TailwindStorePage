@@ -6,6 +6,10 @@ import CheckoutForm from "../ShippingForm";
 function CheckoutPayment() {
   const { cart, getTotalQuantity, getTotalPrice } = useContext(CartContext);
 
+  function calculateTax(total) {
+    return total * 0.085;
+  }
+
   return (
     <section className="px-5 md:px-10 flex justify-center">
       <div className="lg:grid lg:grid-cols-8 lg:gap-12 w-full max-w-7xl">
@@ -25,10 +29,12 @@ function CheckoutPayment() {
                 </div>
               </Link>
 
-              <div>
-                <span>{`Shipping`}</span>
-                <span>{`>`}</span>
-              </div>
+              <Link to="/checkout/shipping">
+                <div>
+                  <span>{`Shipping`}</span>
+                  <span>{`>`}</span>
+                </div>
+              </Link>
 
               <div>
                 <span className="mr-2 text-gray-700 font-medium">{`Payment`}</span>
@@ -91,7 +97,7 @@ function CheckoutPayment() {
             <div className="text-sm space-y-2">
               <div className="flex justify-between">
                 <span className="block text-gray-700">Subtotal</span>
-                <span className="block font-medium">$229.96</span>
+                <span className="block font-medium">{`$${getTotalPrice()}`}</span>
               </div>
               <div className="flex justify-between">
                 <span className="block text-gray-700">Shipping</span>
@@ -103,7 +109,9 @@ function CheckoutPayment() {
               </div>
               <div className="flex justify-between">
                 <span className="block text-gray-700">Estimated Taxes</span>
-                <span className="block font-medium">$18.40</span>
+                <span className="block font-medium">{`$${(
+                  getTotalPrice() * 0.085
+                ).toFixed(2)}`}</span>
               </div>
             </div>
 
@@ -111,7 +119,11 @@ function CheckoutPayment() {
 
             <div className="flex justify-between font-semibold">
               <span className="block">Total</span>
-              <span className="block">$18.40</span>
+              <span className="block">{`$${(
+                getTotalPrice() +
+                calculateTax(getTotalPrice()) +
+                4.99
+              ).toFixed(2)}`}</span>
             </div>
           </div>
 

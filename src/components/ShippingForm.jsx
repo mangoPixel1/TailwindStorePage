@@ -138,7 +138,7 @@ function ShippingForm() {
     navigate("/checkout/payment");
   }
 
-  console.log(values);
+  //console.log(values);
 
   return (
     <form onSubmit={handleSubmit}>

@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 import ShippingFormInput from "./ShippingFormInput";
 
 function ShippingForm() {
+  const EMAIL_INDEX = 0;
+  const OPT_IN_EMAIL_INDEX = 1;
+  const PHONE_INDEX = 2;
+  const OPT_IN_PHONE_INDEX = 3;
+
   const navigate = useNavigate();
 
   const [inputs, setInputs] = useState([
@@ -131,9 +136,6 @@ function ShippingForm() {
     e.preventDefault();
     console.log("Submitting");
     navigate("/checkout/payment");
-    // Set button as type="submit"
-    // Handle final input validation
-    // useNavigate to navigate to PaymentForm
   }
 
   console.log(values);
@@ -147,15 +149,15 @@ function ShippingForm() {
         </h1>
         <div className="mb-4">
           <ShippingFormInput
-            {...inputs[0]}
-            value={values[inputs[0].name]}
+            {...inputs[EMAIL_INDEX]}
+            value={values[inputs[EMAIL_INDEX].name]}
             handleInputChange={handleInputChange}
           />
 
           <div className="mt-2">
             <ShippingFormInput
-              {...inputs[1]}
-              value={values[inputs[1].name]}
+              {...inputs[OPT_IN_EMAIL_INDEX]}
+              value={values[inputs[OPT_IN_EMAIL_INDEX].name]}
               handleInputChange={handleInputChange}
               label="Email me with news and offers"
             />
@@ -164,14 +166,14 @@ function ShippingForm() {
 
         <div>
           <ShippingFormInput
-            {...inputs[2]}
-            value={values[inputs[2].name]}
+            {...inputs[PHONE_INDEX]}
+            value={values[inputs[PHONE_INDEX].name]}
             handleInputChange={handleInputChange}
           />
           <div className="mt-2">
             <ShippingFormInput
-              {...inputs[3]}
-              value={values[inputs[3].name]}
+              {...inputs[OPT_IN_PHONE_INDEX]}
+              value={values[inputs[OPT_IN_PHONE_INDEX].name]}
               handleInputChange={handleInputChange}
               label="I agree to receive order updates and promotional texts. Message & data rates may apply."
             />
@@ -185,7 +187,6 @@ function ShippingForm() {
           Shipping Address
         </h1>
         <div className="space-y-3">
-          {/* map the inputs using CheckoutForm */}
           {inputs
             .filter(
               (input) =>

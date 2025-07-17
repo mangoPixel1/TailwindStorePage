@@ -46,7 +46,7 @@ function CheckoutPayment() {
 
           {/* Express Checkout */}
           <div className="mb-5 max-w-2xl">
-            <h1 className="text-lg text-gray-800 font-semibold">
+            <h1 className="mb-2 text-lg text-gray-800 font-semibold">
               Express Checkout
             </h1>
             <div className="grid grid-cols-3 gap-2">
@@ -62,10 +62,7 @@ function CheckoutPayment() {
             </div>
           </div>
 
-          <div className="mb-5 max-w-2xl">
-            <h1 className="text-lg text-gray-800 font-semibold">Payment</h1>
-            <PaymentForm />
-          </div>
+          <PaymentForm />
 
           {/* Shipping Form - Left Column */}
         </div>

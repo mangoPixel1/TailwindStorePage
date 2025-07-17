@@ -1,10 +1,14 @@
 import { useState } from "react";
 
-function PaymentFormInput() {
+function PaymentFormInput(props) {
+  const { errorMessage, isFullWidth, ...inputProps } = props;
+
   return (
     <input
-      type="text"
-      className="w-full block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm"
+      {...inputProps}
+      className={`${
+        isFullWidth ? `w-full` : `w-1/2 inline`
+      } block border-2 border-gray-300 rounded-sm placeholder:text-sm pl-2 py-2 text-sm`}
     />
   );
 }

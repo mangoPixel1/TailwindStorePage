@@ -31,7 +31,7 @@ function CheckoutPayment() {
 
               <Link to="/checkout/shipping">
                 <div>
-                  <span>{`Shipping`}</span>
+                  <span>{`Shipping `}</span>
                   <span>{`>`}</span>
                 </div>
               </Link>
@@ -71,6 +71,17 @@ function CheckoutPayment() {
         <div className="lg:col-span-3 lg:mt-35 my-15">
           <div className="p-5 border border-gray-200 rounded-md">
             <h2 className="mb-4 font-semibold">Order Summary</h2>
+            <div className="mb-6 ">
+              <h3 className="mb-2 text-sm font-medium">Shipping Address</h3>
+              <div className="text-sm text-gray-800 space-y-1">
+                <p>John Doe</p>
+                <p>12345 Main St</p>
+                <p>APT 12</p>
+                <p>New York, New York, United States</p>
+
+                <p>10001</p>
+              </div>
+            </div>
             {cart.map((item) => (
               <div
                 key={item.data.id}

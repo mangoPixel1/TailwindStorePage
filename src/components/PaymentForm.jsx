@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import PaymentFormInput from "./PaymentFormInput";
-import { DiVim } from "react-icons/di";
+import { CartContext } from "../CartContext";
 
 function PaymentForm() {
+  const navigate = useNavigate();
+  const { clearCart } = useContext(CartContext);
   const SHIPPING_INFO_INDEX = 5;
 
   const [inputs, setInputs] = useState([
@@ -144,6 +146,8 @@ function PaymentForm() {
   function handleSubmit(e) {
     e.preventDefault();
     console.log("Submitting");
+    clearCart();
+    navigate("/order_confirmation");
   }
 
   return (

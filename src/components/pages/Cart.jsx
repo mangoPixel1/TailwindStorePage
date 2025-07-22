@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../../CartContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Icons
 import { FaTrash } from "react-icons/fa";
@@ -8,6 +8,14 @@ import { FaTrash } from "react-icons/fa";
 function Cart() {
   const { cart, removeItem, updateQuantity, getTotalQuantity, getTotalPrice } =
     useContext(CartContext);
+
+  const navigate = useNavigate();
+
+  function handleCheckoutClick() {
+    if (cart.length > 0) {
+      navigate("/checkout/shipping");
+    }
+  }
 
   return (
     <section className="flex flex-col lg:flex-row lg:h-screen text-gray-900">
@@ -197,11 +205,13 @@ function Cart() {
             <span>Total Cost</span>
             <span>{`$${getTotalPrice().toFixed(2)}`}</span>
           </div>
-          <Link to="/checkout/shipping">
-            <button className="block w-full px-3 py-2 rounded-sm text-white bg-slate-500 hover:bg-slate-600 transition duration-300 cursor-pointer">
-              Check Out
-            </button>
-          </Link>
+
+          <button
+            onClick={handleCheckoutClick}
+            className="block w-full px-3 py-2 rounded-sm text-white bg-slate-500 hover:bg-slate-600 transition duration-300 cursor-pointer"
+          >
+            Check Out
+          </button>
         </div>
       </div>
     </section>

@@ -26,6 +26,7 @@ import ProductPage from "./components/pages/ProductPage";
 import CartDrawerWrapper from "./components/CartDrawerWrapper";
 import CheckoutShipping from "./components/pages/CheckoutShipping";
 import CheckoutPayment from "./components/pages/CheckoutPayment";
+import OrderConfirmation from "./components/pages/OrderConfirmation";
 
 function App() {
   const location = useLocation();
@@ -45,6 +46,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout/shipping" element={<CheckoutShipping />} />
           <Route path="/checkout/payment" element={<CheckoutPayment />} />
+          <Route path="/order_confirmation" element={<OrderConfirmation />} />
           <Route path="/category/:category" element={<CategoryPage />} />
           <Route path="/product/:product" element={<ProductPage />} />
           <Route path="*" element={<NotFound />} />

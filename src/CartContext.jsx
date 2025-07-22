@@ -56,6 +56,8 @@ function cartReducer(state, action) {
         return item;
       });
       return { ...state, cart: updatedCart };
+    case "CLEAR_CART":
+      return { ...state, cart: [] };
     case "TOGGLE_CART":
       return { ...state, isCartOpen: !state.isCartOpen };
     case "CLOSE_CART":
@@ -82,6 +84,10 @@ export const CartProvider = ({ children }) => {
 
   function updateQuantity(index, newQuantity) {
     dispatch({ type: "UPDATE_QUANTITY", payload: { index, newQuantity } });
+  }
+
+  function clearCart() {
+    dispatch({ type: "CLEAR_CART" });
   }
 
   function getTotalQuantity() {
@@ -114,6 +120,7 @@ export const CartProvider = ({ children }) => {
         addItem,
         removeItem,
         updateQuantity,
+        clearCart,
         getTotalQuantity,
         getTotalPrice,
         toggleCart,
@@ -126,7 +133,7 @@ export const CartProvider = ({ children }) => {
 };
 
 /*
-  Use this format:
+  Use this format for state.cart:
   {
     data: {
       id: 1,

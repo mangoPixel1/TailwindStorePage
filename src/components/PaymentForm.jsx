@@ -12,7 +12,8 @@ function PaymentForm() {
       type: "text",
       name: "card",
       placeholder: "Card number",
-      pattern: "^(\\d{4}[- ]?){3}\\d{4}$",
+      pattern:
+        "^\\d{16}$|^\\d{4} \\d{4} \\d{4} \\d{4}$|^\\d{4}-\\d{4}-\\d{4}-\\d{4}$",
       errorMessage:
         "Please enter a valid 16-digit card number (e.g., 1234 5678 9012 3456)",
       isFullWidth: true,
@@ -125,7 +126,7 @@ function PaymentForm() {
   ]);
 
   const [values, setValues] = useState({
-    card_name: "",
+    card: "",
     expiration: "",
     cvv: "",
     card_name: "",

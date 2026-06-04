@@ -145,7 +145,7 @@ function ShippingForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    navigate("/checkout/payment");
+    navigate("/checkout/payment", { state: values });
   }
 
   return (

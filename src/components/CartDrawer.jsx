@@ -24,7 +24,7 @@ function CartDrawer() {
         </div>
         <div className="flex flex-col gap-8">
           {cart.map((item, index) => (
-            <div className="grid grid-cols-8" key={index}>
+            <div className="grid grid-cols-8" key={item.data.id}>
               <div className="col-span-2 w-[80px] h-[80px] bg-white">
                 <Link to={`/product/${item.data.id}`} onClick={() => closeCart()}>
                   <img src={item.data.image} className="object-contain" />

@@ -14,10 +14,17 @@ function ProductPage() {
   const { addItem } = useCart();
 
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${product}`)
+    const controller = new AbortController();
+    fetch(`https://fakestoreapi.com/products/${product}`, { signal: controller.signal })
       .then((response) => response.json())
-      .then((data) => setProductData(data));
+      .then((data) => setProductData(data))
+      .catch((err) => { if (err.name !== "AbortError") throw err; });
+    return () => controller.abort();
   }, [product]);
+
+  useEffect(() => {
+    return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); };
+  }, []);
 
   function handleAddToCart() {
     const itemObj = {

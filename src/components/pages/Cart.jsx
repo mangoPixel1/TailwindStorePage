@@ -38,7 +38,7 @@ function Cart() {
         </div>
 
         {cart.map((item, index) => (
-          <div key={index} className="mb-8">
+          <div key={item.data.id} className="mb-8">
             {/* Desktop view */}
             <div className="hidden lg:grid lg:grid-cols-12 mb-2 text-sm">
               <div className="col-span-2 w-[75px] h-[75px] bg-white">

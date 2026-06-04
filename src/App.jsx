@@ -1,17 +1,10 @@
-import { useState, useEffect } from "react";
 import { CartProvider } from "./CartContext";
-import {
-  useLocation,
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
-
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
-// Components
-import Header from "../src/components/Header";
-import Footer from "./components/Footer";
+// Layout
+import MainLayout from "./components/MainLayout";
+import CartDrawerWrapper from "./components/CartDrawerWrapper";
 
 // Pages
 import NotFound from "./components/pages/NotFound";
@@ -23,35 +16,31 @@ import Account from "./components/pages/Account";
 import Favorites from "./components/pages/Favorites";
 import Cart from "./components/pages/Cart";
 import ProductPage from "./components/pages/ProductPage";
-import CartDrawerWrapper from "./components/CartDrawerWrapper";
 import CheckoutShipping from "./components/pages/CheckoutShipping";
 import CheckoutPayment from "./components/pages/CheckoutPayment";
 import OrderConfirmation from "./components/pages/OrderConfirmation";
 
 function App() {
-  const location = useLocation();
-  const noLayoutPaths = ["/checkout/shipping", "/checkout/payment"];
-
-  const isNoLayout = noLayoutPaths.includes(location.pathname);
-
   return (
-    <div className="flex flex-col min-h-screen ">
+    <div className="flex flex-col min-h-screen">
       <CartProvider>
         <CartDrawerWrapper />
-        {!isNoLayout && <Header />}
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/category/:category" element={<CategoryPage />} />
+            <Route path="/product/:product" element={<ProductPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
           <Route path="/checkout/shipping" element={<CheckoutShipping />} />
           <Route path="/checkout/payment" element={<CheckoutPayment />} />
           <Route path="/order_confirmation" element={<OrderConfirmation />} />
-          <Route path="/category/:category" element={<CategoryPage />} />
-          <Route path="/product/:product" element={<ProductPage />} />
-          <Route path="*" element={<NotFound />} />
         </Routes>
-        {!isNoLayout && <Footer />}
       </CartProvider>
     </div>
   );

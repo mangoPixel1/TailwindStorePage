@@ -1,17 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { FaStar } from "react-icons/fa";
-import { FaRegStarHalfStroke } from "react-icons/fa6";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import StarRating from "../StarRating";
 
 function Category() {
   let { category } = useParams(); // Extract category name
   const [categoryImage, setCategoryImage] = useState(); // Background image for header
   const [products, setProducts] = useState([]); // Sets products for the current category
   const [isLoading, setIsLoading] = useState(true);
-
-  //console.log("Category from useParams:", category); // Debugging log
 
   const getCategoryImage = (cat) => {
     // display hero bg-image based on category
@@ -30,26 +27,11 @@ function Category() {
   };
 
   useEffect(() => {
-    setCategoryImage(getCategoryImage(category));
-
-    // simulate 4 second delay
-    /*const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 4000);
-
-    return () => {
-      clearTimeout(timer);
-    };*/
-  }, []);
-
-  useEffect(() => {
     fetch(`https://fakestoreapi.com/products/category/${category}`)
       .then((response) => response.json())
       .then((data) => {
         setProducts(data);
         setIsLoading(false);
-
-        //console.log(data);
       })
       .catch((error) => console.error(error));
 
@@ -102,24 +84,7 @@ function Category() {
                       <span className="font-semibold text-md text-indigo-950">{`$${product.price.toFixed(
                         2
                       )}`}</span>
-                      <div className="flex items-center mt-2 md:mt-0 text-sm text-gray-600">
-                        {Array.from({ length: 5 }, (_, i) => {
-                          const roundedRating =
-                            Math.round(product.rating.rate * 2) / 2;
-                          const starNumber = i + 1;
-                          if (roundedRating >= starNumber) {
-                            return <FaStar key={i} color="#ffc107" />; // yellow star
-                          }
-                          if (roundedRating + 0.5 >= starNumber) {
-                            return (
-                              <FaRegStarHalfStroke key={i} color="#ffc107" />
-                            ); // half star
-                          } else {
-                            return <FaStar key={i} color="#e4e5e9" />;
-                          }
-                        })}
-                        <span className="ml-2">{`(${product.rating.count})`}</span>
-                      </div>
+                      <StarRating rate={product.rating.rate} count={product.rating.count} />
                     </div>
                   </div>
                 ))}

@@ -1,13 +1,12 @@
-import { useContext } from "react";
-import { CartContext } from "../../CartContext";
+import { useCart } from "../../CartContext";
 import { Link, useNavigate } from "react-router-dom";
 
 // Icons
 import { FaTrash } from "react-icons/fa";
 
 function Cart() {
-  const { cart, removeItem, updateQuantity, getTotalQuantity, getTotalPrice } =
-    useContext(CartContext);
+  const { cart, removeItem, updateQuantity, totalQuantity, totalPrice } =
+    useCart();
 
   const navigate = useNavigate();
 
@@ -24,8 +23,8 @@ function Cart() {
           <h1 className="text-3xl text-gray-800 font-semibold">
             Shopping Cart
           </h1>
-          <h2>{`(${getTotalQuantity()} ${
-            getTotalQuantity() === 1 ? `item` : `items`
+          <h2>{`(${totalQuantity} ${
+            totalQuantity === 1 ? `item` : `items`
           })`}</h2>
         </div>
 
@@ -183,7 +182,7 @@ function Cart() {
           <div>
             <div className="flex justify-between">
               <span>Subtotal:</span>
-              <span>{`$${getTotalPrice().toFixed(2)}`}</span>
+              <span>{`$${totalPrice.toFixed(2)}`}</span>
             </div>
             <div className="flex justify-between">
               <span>Discount:</span>
@@ -203,7 +202,7 @@ function Cart() {
 
           <div className="mb-4 flex justify-between text-lg">
             <span>Total Cost</span>
-            <span>{`$${getTotalPrice().toFixed(2)}`}</span>
+            <span>{`$${totalPrice.toFixed(2)}`}</span>
           </div>
 
           <button

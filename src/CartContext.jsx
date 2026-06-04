@@ -1,4 +1,4 @@
-import { useEffect, createContext, useReducer } from "react";
+import { useEffect, createContext, useReducer, useContext } from "react";
 
 export const CartContext = createContext();
 
@@ -45,17 +45,15 @@ function cartReducer(state, action) {
       const newCart = state.cart.filter((_, i) => i !== action.payload);
       return { ...state, cart: newCart };
     case "UPDATE_QUANTITY":
-      // ADD feature: remove item when newQuantity < 1
-      const updatedCart = state.cart.map((item, i) => {
-        if (i === action.payload.index && action.payload.newQuantity > 0) {
-          return {
-            ...item,
-            quantity: action.payload.newQuantity,
-          };
-        }
-        return item;
-      });
-      return { ...state, cart: updatedCart };
+      if (action.payload.newQuantity < 1) {
+        return { ...state, cart: state.cart.filter((_, i) => i !== action.payload.index) };
+      }
+      return {
+        ...state,
+        cart: state.cart.map((item, i) =>
+          i === action.payload.index ? { ...item, quantity: action.payload.newQuantity } : item
+        ),
+      };
     case "CLEAR_CART":
       return { ...state, cart: [] };
     case "TOGGLE_CART":
@@ -90,19 +88,8 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: "CLEAR_CART" });
   }
 
-  function getTotalQuantity() {
-    const result = state.cart.reduce((acc, currentItem) => {
-      return acc + currentItem.quantity;
-    }, 0);
-    return result;
-  }
-
-  function getTotalPrice() {
-    const result = state.cart.reduce((acc, currentItem) => {
-      return acc + currentItem.quantity * currentItem.data.price;
-    }, 0);
-    return result;
-  }
+  const totalQuantity = state.cart.reduce((acc, item) => acc + item.quantity, 0);
+  const totalPrice = state.cart.reduce((acc, item) => acc + item.quantity * item.data.price, 0);
 
   function toggleCart() {
     dispatch({ type: "TOGGLE_CART" });
@@ -121,8 +108,8 @@ export const CartProvider = ({ children }) => {
         removeItem,
         updateQuantity,
         clearCart,
-        getTotalQuantity,
-        getTotalPrice,
+        totalQuantity,
+        totalPrice,
         toggleCart,
         closeCart,
       }}
@@ -131,6 +118,12 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
+
+export function useCart() {
+  const context = useContext(CartContext);
+  if (!context) throw new Error("useCart must be used within a CartProvider");
+  return context;
+}
 
 /*
   Use this format for state.cart:

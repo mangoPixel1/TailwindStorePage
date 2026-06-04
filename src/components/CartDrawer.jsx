@@ -1,32 +1,15 @@
-import { useState, useContext } from "react";
-import { CartContext } from "../CartContext";
 import { Link } from "react-router-dom";
-
-// Icons
 import { FaTrash } from "react-icons/fa";
+import { useCart } from "../CartContext";
 
 function CartDrawer() {
-  const {
-    cart,
-    isCartOpen,
-    removeItem,
-    updateQuantity,
-    getTotalQuantity,
-    getTotalPrice,
-    closeCart,
-  } = useContext(CartContext);
+  const { cart, removeItem, totalQuantity, closeCart } = useCart();
 
   return (
-    <div
-      className={`${
-        isCartOpen === false && `hidden`
-      } flex flex-col justify-between fixed right-0 top-0 h-full w-[500px] bg-white shadow-lg z-50 px-5 py-3`}
-    >
+    <div className="flex flex-col justify-between h-full px-5 py-3">
       <div>
         <div className="flex justify-between mb-5">
-          <h1>{`Cart (${getTotalQuantity()} ${
-            getTotalQuantity() === 1 ? `item` : `items`
-          })`}</h1>
+          <h1>{`Cart (${totalQuantity} ${totalQuantity === 1 ? "item" : "items"})`}</h1>
           <button className="cursor-pointer" onClick={() => closeCart()}>
             <svg
               width="25"
@@ -34,22 +17,8 @@ function CartDrawer() {
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <line
-                x1="4"
-                y1="4"
-                x2="16"
-                y2="16"
-                stroke="#787777"
-                strokeWidth="2"
-              />
-              <line
-                x1="16"
-                y1="4"
-                x2="4"
-                y2="16"
-                stroke="#787777"
-                strokeWidth="2"
-              />
+              <line x1="4" y1="4" x2="16" y2="16" stroke="#787777" strokeWidth="2" />
+              <line x1="16" y1="4" x2="4" y2="16" stroke="#787777" strokeWidth="2" />
             </svg>
           </button>
         </div>
@@ -57,21 +26,14 @@ function CartDrawer() {
           {cart.map((item, index) => (
             <div className="grid grid-cols-8" key={index}>
               <div className="col-span-2 w-[80px] h-[80px] bg-white">
-                <Link
-                  to={`/product/${item.data.id}`}
-                  onClick={() => closeCart()}
-                >
+                <Link to={`/product/${item.data.id}`} onClick={() => closeCart()}>
                   <img src={item.data.image} className="object-contain" />
                 </Link>
               </div>
               <div className="col-span-5 text-xs">
-                <Link
-                  to={`/product/${item.data.id}`}
-                  onClick={() => closeCart()}
-                >
+                <Link to={`/product/${item.data.id}`} onClick={() => closeCart()}>
                   <p>{item.data.title}</p>
                 </Link>
-
                 <p>{`$${item.data.price.toFixed(2)}`}</p>
                 <p>{`x${item.quantity}`}</p>
               </div>
@@ -85,10 +47,12 @@ function CartDrawer() {
         </div>
       </div>
 
-      <Link to="/cart" onClick={() => closeCart()}>
-        <button className="block w-full px-3 py-2 rounded-sm text-white bg-slate-500 hover:bg-slate-600 transition duration-300 cursor-pointer">
-          View Cart
-        </button>
+      <Link
+        to="/cart"
+        onClick={() => closeCart()}
+        className="block w-full px-3 py-2 rounded-sm text-white text-center bg-slate-500 hover:bg-slate-600 transition duration-300"
+      >
+        View Cart
       </Link>
     </div>
   );

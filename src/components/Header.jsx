@@ -1,33 +1,18 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { CartContext } from "../CartContext";
+import { useCart } from "../CartContext";
 
 function Header() {
   const [categories, setCategories] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const { toggleCart, getTotalQuantity } = useContext(CartContext);
+  const { toggleCart, totalQuantity } = useCart();
 
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products`)
-      .then((response) => {
-        return response.json();
-      })
+    fetch("https://fakestoreapi.com/products/categories")
+      .then((res) => res.json())
       .then((data) => {
-        // Extract all categories from products list, avoid duplicate names
-        let categoryNames = [];
-        data.forEach((item) => {
-          if (!categoryNames.includes(item.category)) {
-            categoryNames.push(item.category);
-          }
-        });
-
-        // Capitalize first letter of each category
-        const names = categoryNames.map((name) => {
-          return name.charAt(0).toUpperCase() + name.slice(1);
-        });
-
-        setCategories(names);
+        setCategories(data.map((name) => name.charAt(0).toUpperCase() + name.slice(1)));
       })
       .catch((error) => console.error(error));
   }, []);
@@ -55,9 +40,9 @@ function Header() {
 
               <nav className="hidden min-[830px]:block">
                 <ul className="flex gap-4">
-                  {categories.map((cat, index) => (
+                  {categories.map((cat) => (
                     <li
-                      key={index}
+                      key={cat}
                       className="capitalize cursor-pointer hover:text-slate-200"
                     >
                       <Link to={`category/${cat.toLowerCase()}`}>{cat}</Link>
@@ -119,7 +104,7 @@ function Header() {
               className="cursor-pointer hover:text-slate-200 text-sm whitespace-nowrap"
               onClick={() => toggleCart()}
             >
-              {`Cart (${getTotalQuantity()})`}
+              {`Cart (${totalQuantity})`}
             </span>
           </div>
         </div>
@@ -127,9 +112,9 @@ function Header() {
       {menuOpen && (
         <nav className="px-10 bg-gray-200 min-[830px]:hidden">
           <ul className="py-3 flex flex-col gap-4">
-            {categories.map((cat, index) => (
+            {categories.map((cat) => (
               <li
-                key={index}
+                key={cat}
                 className="py-3 text-center capitalize cursor-pointer text-gray-800 hover:text-gray-700"
                 onClick={closeMenu}
               >
@@ -149,7 +134,7 @@ function Header() {
               className="cursor-pointer text-gray-800 hover:text-gray-700"
               onClick={closeMenu}
             >
-              <Link to="cart">{`Cart (${getTotalQuantity()})`}</Link>
+              <Link to="cart">{`Cart (${totalQuantity})`}</Link>
             </span>
           </div>
         </nav>

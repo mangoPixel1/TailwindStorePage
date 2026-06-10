@@ -125,17 +125,17 @@ function ShippingForm() {
   const navigate = useNavigate();
 
   const [values, setValues] = useState({
-    email: "",
+    email: "john.doe@example.com",
     optInEmail: false,
-    phone: "",
+    phone: "555-867-5309",
     optInText: false,
-    region: "",
-    name: "",
-    addrLine1: "",
+    region: "United States",
+    name: "John Doe",
+    addrLine1: "123 Main St",
     addrLine2: "",
-    city: "",
-    state: "",
-    zip: "",
+    city: "Los Angeles",
+    state: "CA",
+    zip: "90001",
   });
 
   function handleInputChange(e) {

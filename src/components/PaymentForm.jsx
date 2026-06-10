@@ -15,6 +15,7 @@ const inputs = [
     errorMessage:
       "Please enter a valid 16-digit card number (e.g., 1234 5678 9012 3456)",
     isFullWidth: true,
+    defaultValue: "4111111111111111",
   },
   {
     id: 2,
@@ -25,6 +26,7 @@ const inputs = [
     pattern: "^(0[1-9]|1[0-2])/\\d{2}$",
     errorMessage: "Enter a valid expiration in MM/YY format (e.g., 09/26)",
     isFullWidth: false,
+    defaultValue: "12/27",
   },
   {
     id: 3,
@@ -36,6 +38,7 @@ const inputs = [
     errorMessage:
       "Enter a valid 3 or 4 digit security code (e.g., 123 or 1234)",
     isFullWidth: false,
+    defaultValue: "123",
   },
   {
     id: 4,
@@ -47,6 +50,7 @@ const inputs = [
     errorMessage:
       "Name should match the cardholder's name (letters, spaces, hyphens, apostrophes allowed)",
     isFullWidth: true,
+    defaultValue: "John Doe",
   },
   {
     id: 5,
@@ -59,6 +63,7 @@ const inputs = [
     errorMessage:
       "Country name should contain only letters and spaces (e.g., United States)",
     isFullWidth: true,
+    defaultValue: "United States",
   },
   {
     id: 6,
@@ -71,6 +76,7 @@ const inputs = [
     errorMessage:
       "Name can include letters, spaces, hyphens, and apostrophes only (e.g., Anne-Marie O'Neil)",
     isFullWidth: true,
+    defaultValue: "John Doe",
   },
   {
     id: 7,
@@ -83,6 +89,7 @@ const inputs = [
     errorMessage:
       "Address should include letters, numbers, and common punctuation (e.g., 123 Main St., Apt #4)",
     isFullWidth: true,
+    defaultValue: "123 Main St",
   },
   {
     id: 8,
@@ -107,6 +114,7 @@ const inputs = [
     errorMessage:
       "City name should only contain letters, spaces, apostrophes, and hyphens (e.g., Los Angeles or St. John's)",
     isFullWidth: true,
+    defaultValue: "Los Angeles",
   },
   {
     id: 10,
@@ -119,6 +127,7 @@ const inputs = [
     errorMessage:
       "Enter a 2-letter state abbreviation in uppercase (e.g., CA, TX)",
     isFullWidth: true,
+    defaultValue: "CA",
   },
   {
     id: 11,
@@ -130,6 +139,7 @@ const inputs = [
     pattern: "^\\d{5}(-\\d{4})?$",
     errorMessage: "Enter a 5-digit ZIP code (e.g., 12345)",
     isFullWidth: true,
+    defaultValue: "90001",
   },
 ];
 

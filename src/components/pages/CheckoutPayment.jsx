@@ -11,6 +11,18 @@ function CheckoutPayment() {
     return total * 0.085;
   }
 
+  if (cart.length === 0) {
+    return (
+      <section className="flex flex-col items-center justify-center min-h-screen gap-4 text-center px-5">
+        <h1 className="text-2xl font-semibold text-gray-800">Your cart is empty</h1>
+        <p className="text-gray-500">Add some items before proceeding to checkout.</p>
+        <Link to="/" className="px-5 py-2 rounded-sm text-white bg-slate-500 hover:bg-slate-600 transition duration-300">
+          Back to Home
+        </Link>
+      </section>
+    );
+  }
+
   return (
     <section className="px-5 md:px-10 flex justify-center">
       <div className="lg:grid lg:grid-cols-8 lg:gap-12 w-full max-w-7xl">
@@ -73,7 +85,7 @@ function CheckoutPayment() {
           <div className="p-5 border border-gray-200 rounded-md">
             <h2 className="mb-4 font-semibold">Order Summary</h2>
             {shipping && (
-              <div className="mb-6">
+              <div className="mb-2">
                 <h3 className="mb-2 text-sm font-medium">Shipping Address</h3>
                 <div className="text-sm text-gray-800 space-y-1">
                   <p>{shipping.name}</p>
@@ -84,13 +96,20 @@ function CheckoutPayment() {
                 </div>
               </div>
             )}
+
+            <hr className="border-gray-200 mt-5 mb-4" />
+
             {cart.map((item) => (
               <div
                 key={item.data.id}
                 className="flex justify-between sm:flex-row mb-4"
               >
                 <div className="flex">
-                  <div className="mr-4 w-16 h-16 bg-gray-200 border-gray-300 border rounded-md flex-shrink-0"></div>
+                  <img
+                    src={item.data.image}
+                    alt={item.data.title}
+                    className="mr-4 w-16 h-16 object-contain border border-gray-300 rounded-md flex-shrink-0"
+                  />
                   <div>
                     <span className="block text-sm font-medium">
                       {item.data.title}
@@ -101,7 +120,7 @@ function CheckoutPayment() {
 
                 <div className="flex flex-col justify-end">
                   <span className="block text-sm font-medium">{`$${item.data.price.toFixed(
-                    2
+                    2,
                   )}`}</span>
                 </div>
               </div>

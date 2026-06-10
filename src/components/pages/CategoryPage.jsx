@@ -1,8 +1,20 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 import StarRating from "../StarRating";
+
+function ProductCardSkeleton() {
+  return (
+    <div>
+      <div className="skeleton mb-5 aspect-square" />
+      <div className="flex flex-col gap-2">
+        <div className="skeleton h-3 rounded w-full" />
+        <div className="skeleton h-3 rounded w-3/4" />
+        <div className="skeleton h-3 rounded w-1/4 mt-1" />
+        <div className="skeleton h-3 rounded w-1/2" />
+      </div>
+    </div>
+  );
+}
 
 function Category() {
   let { category } = useParams(); // Extract category name
@@ -27,6 +39,7 @@ function Category() {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(`https://fakestoreapi.com/products/category/${category}`)
       .then((response) => response.json())
       .then((data) => {
@@ -50,19 +63,14 @@ function Category() {
         <div className="absolute inset-0 bg-black opacity-60 z-10"></div>
       </section>
       <section className="flex justify-center px-5 py-5 bg-gray-50 text-gray-600">
-        <div className="flex flex-col justify-center lg:max-w-6xl">
+        <div className="flex flex-col justify-center w-full lg:max-w-6xl">
           <p className="mb-5">
             {!isLoading && `Showing all ${products.length} results`}
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
             {isLoading
               ? Array.from({ length: 6 }, (_, i) => (
-                  <div key={i} className="aspect-square w-full">
-                    <Skeleton
-                      containerClassName="w-full h-full"
-                      className="w-full h-44 sm:h-64 md:h-72 lg:max-h-96 rounded-lg"
-                    />
-                  </div>
+                  <ProductCardSkeleton key={i} />
                 ))
               : products.map((product) => (
                   <div key={product.id}>
@@ -82,9 +90,12 @@ function Category() {
                         </span>
                       </Link>
                       <span className="font-semibold text-md text-indigo-950">{`$${product.price.toFixed(
-                        2
+                        2,
                       )}`}</span>
-                      <StarRating rate={product.rating.rate} count={product.rating.count} />
+                      <StarRating
+                        rate={product.rating.rate}
+                        count={product.rating.count}
+                      />
                     </div>
                   </div>
                 ))}

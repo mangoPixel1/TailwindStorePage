@@ -9,10 +9,17 @@ function Header() {
   const { toggleCart, totalQuantity } = useCart();
 
   useEffect(() => {
+    const cached = localStorage.getItem("categories");
+    if (cached) {
+      setCategories(JSON.parse(cached));
+      return;
+    }
     fetch("https://fakestoreapi.com/products/categories")
       .then((res) => res.json())
       .then((data) => {
-        setCategories(data.map((name) => name.charAt(0).toUpperCase() + name.slice(1)));
+        const formatted = data.map((name) => name.charAt(0).toUpperCase() + name.slice(1));
+        setCategories(formatted);
+        localStorage.setItem("categories", JSON.stringify(formatted));
       })
       .catch((error) => console.error(error));
   }, []);

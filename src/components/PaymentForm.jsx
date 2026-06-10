@@ -143,9 +143,9 @@ const inputs = [
   },
 ];
 
-function PaymentForm() {
+function PaymentForm({ shipping }) {
   const navigate = useNavigate();
-  const { clearCart } = useCart();
+  const { clearCart, cart, totalPrice } = useCart();
 
   const [values, setValues] = useState({
     card: "",
@@ -165,8 +165,9 @@ function PaymentForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    const orderData = { email: shipping?.email, cart: [...cart], totalPrice };
     clearCart();
-    navigate("/order_confirmation");
+    navigate("/order_confirmation", { state: orderData });
   }
 
   return (

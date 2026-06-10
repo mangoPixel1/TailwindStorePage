@@ -37,11 +37,11 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/category/:category" element={<CategoryPage />} />
               <Route path="/product/:product" element={<ProductPage />} />
+              <Route path="/order_confirmation" element={<OrderConfirmation />} />
               <Route path="*" element={<NotFound />} />
             </Route>
             <Route path="/checkout/shipping" element={<CheckoutShipping />} />
             <Route path="/checkout/payment" element={<CheckoutPayment />} />
-            <Route path="/order_confirmation" element={<OrderConfirmation />} />
           </Routes>
         </Suspense>
       </CartProvider>

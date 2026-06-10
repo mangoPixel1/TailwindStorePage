@@ -59,7 +59,7 @@ function Cart() {
                     {item.data.category}
                   </span>
                   <span className="font-semibold">{`$${item.data.price.toFixed(
-                    2
+                    2,
                   )}`}</span>
                 </div>
               </div>
@@ -207,7 +207,7 @@ function Cart() {
 
           <button
             onClick={handleCheckoutClick}
-            className="block w-full px-3 py-2 rounded-sm text-white bg-slate-500 hover:bg-slate-600 transition duration-300 cursor-pointer"
+            className={`${cart.length === 0 ? "opacity-50 cursor-not-allowed" : "hover:bg-slate-600 cursor-pointer"} block w-full px-3 py-2 rounded-sm text-white bg-slate-500 transition duration-300`}
           >
             Check Out
           </button>

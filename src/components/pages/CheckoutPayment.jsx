@@ -75,7 +75,7 @@ function CheckoutPayment() {
             </div>
           </div>
 
-          <PaymentForm />
+          <PaymentForm shipping={shipping} />
 
           {/* Shipping Form - Left Column */}
         </div>

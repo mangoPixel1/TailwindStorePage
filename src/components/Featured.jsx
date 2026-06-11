@@ -63,7 +63,7 @@ function Featured() {
 
   return (
     <section
-      className="w-full flex justify-center bg-top bg-no-repeat relative text-slate-300"
+      className="w-full flex justify-center bg-top bg-no-repeat relative text-slate-300 py-10 md:py-0 md:h-96 lg:h-[440px]"
       style={{
         backgroundImage:
           featuredProducts.length > 0 && featuredProducts[featuredIndex]
@@ -73,7 +73,7 @@ function Featured() {
     >
       <div className="absolute inset-0 bg-black opacity-50"></div>
 
-      <div className="flex flex-col gap-10 justify-center items-center w-full px-3 py-10 sm:py-16 md:px-12 md:py-20 lg:px-16 lg:py-24 max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg">
+      <div className="flex flex-col gap-10 justify-center items-center w-full h-full px-3 md:px-12 lg:px-16 max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg">
         <div className="flex justify-center items-center">
           <svg
             onClick={handlePrevClick}
@@ -129,23 +129,23 @@ function Featured() {
             />
           </svg>
         </div>
-        <div className="flex gap-2 z-10">
-          <div
-            className={`h-2 w-2 ${
-              featuredIndex === 0 ? `bg-slate-300` : `bg-slate-400`
-            } rounded-full`}
-          ></div>
-          <div
-            className={`h-2 w-2 ${
-              featuredIndex === 1 ? `bg-slate-300` : `bg-slate-400`
-            } rounded-full`}
-          ></div>
-          <div
-            className={`h-2 w-2 ${
-              featuredIndex === 2 ? `bg-slate-300` : `bg-slate-400`
-            } rounded-full`}
-          ></div>
-        </div>
+      </div>
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+        <div
+          className={`h-2 w-2 ${
+            featuredIndex === 0 ? `bg-slate-300` : `bg-slate-400`
+          } rounded-full`}
+        ></div>
+        <div
+          className={`h-2 w-2 ${
+            featuredIndex === 1 ? `bg-slate-300` : `bg-slate-400`
+          } rounded-full`}
+        ></div>
+        <div
+          className={`h-2 w-2 ${
+            featuredIndex === 2 ? `bg-slate-300` : `bg-slate-400`
+          } rounded-full`}
+        ></div>
       </div>
     </section>
   );

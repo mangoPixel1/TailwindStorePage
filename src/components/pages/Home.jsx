@@ -36,30 +36,6 @@ function Home() {
     },
   ];
 
-  const testimonials = [
-    {
-      id: 1,
-      title: "Finally, a store that understands me.",
-      body: "No products, no shipping, no stress. It's like retail therapy, without the retail. Or the therapy.",
-      user: "John Doe",
-      image: "profile-pic-1.jpg",
-    },
-    {
-      id: 2,
-      title: "Bought everything. Literally nothing arrived.",
-      body: "Zero regrets. My style has never been so conceptually on point.",
-      user: "Jane Doe",
-      image: "profile-pic-2.jpg",
-    },
-    {
-      id: 3,
-      title: "Their jewelry? Fake. Just like this store.",
-      body: "And yet... I feel emotionally richer. Would pretend-shop again!",
-      user: "Jack Doe",
-      image: "profile-pic-3.jpg",
-    },
-  ];
-
   return (
     <>
       <section

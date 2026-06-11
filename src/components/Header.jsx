@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../CartContext";
 
 function Header() {
@@ -7,6 +7,8 @@ function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const { toggleCart, totalQuantity } = useCart();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const cached = localStorage.getItem("categories");
@@ -17,7 +19,9 @@ function Header() {
     fetch("https://fakestoreapi.com/products/categories")
       .then((res) => res.json())
       .then((data) => {
-        const formatted = data.map((name) => name.charAt(0).toUpperCase() + name.slice(1));
+        const formatted = data.map(
+          (name) => name.charAt(0).toUpperCase() + name.slice(1),
+        );
         setCategories(formatted);
         localStorage.setItem("categories", JSON.stringify(formatted));
       })
@@ -30,6 +34,14 @@ function Header() {
 
   const closeMenu = () => {
     setMenuOpen(false);
+  };
+
+  const handleCartClick = () => {
+    if (pathname === "/cart" || pathname === "/login") {
+      navigate("/cart");
+    } else {
+      toggleCart();
+    }
   };
 
   return (
@@ -109,7 +121,7 @@ function Header() {
             </span>
             <span
               className="cursor-pointer hover:text-slate-200 text-sm whitespace-nowrap"
-              onClick={() => toggleCart()}
+              onClick={handleCartClick}
             >
               {`Cart (${totalQuantity})`}
             </span>

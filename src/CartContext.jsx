@@ -1,4 +1,4 @@
-import { useEffect, createContext, useReducer, useContext, useCallback, useMemo } from "react";
+import { useEffect, createContext, useReducer, useContext, useMemo } from "react";
 
 export const CartContext = createContext();
 
@@ -72,30 +72,6 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cartData", JSON.stringify(state.cart));
   }, [state.cart]);
 
-  const addItem = useCallback((item) => {
-    dispatch({ type: "ADD_TO_CART", payload: item });
-  }, []);
-
-  const removeItem = useCallback((index) => {
-    dispatch({ type: "REMOVE_FROM_CART", payload: index });
-  }, []);
-
-  const updateQuantity = useCallback((index, newQuantity) => {
-    dispatch({ type: "UPDATE_QUANTITY", payload: { index, newQuantity } });
-  }, []);
-
-  const clearCart = useCallback(() => {
-    dispatch({ type: "CLEAR_CART" });
-  }, []);
-
-  const toggleCart = useCallback(() => {
-    dispatch({ type: "TOGGLE_CART" });
-  }, []);
-
-  const closeCart = useCallback(() => {
-    dispatch({ type: "CLOSE_CART" });
-  }, []);
-
   const totalQuantity = useMemo(
     () => state.cart.reduce((acc, item) => acc + item.quantity, 0),
     [state.cart]
@@ -110,16 +86,16 @@ export const CartProvider = ({ children }) => {
     () => ({
       cart: state.cart,
       isCartOpen: state.isCartOpen,
-      addItem,
-      removeItem,
-      updateQuantity,
-      clearCart,
+      addItem: (item) => dispatch({ type: "ADD_TO_CART", payload: item }),
+      removeItem: (index) => dispatch({ type: "REMOVE_FROM_CART", payload: index }),
+      updateQuantity: (index, newQuantity) => dispatch({ type: "UPDATE_QUANTITY", payload: { index, newQuantity } }),
+      clearCart: () => dispatch({ type: "CLEAR_CART" }),
+      toggleCart: () => dispatch({ type: "TOGGLE_CART" }),
+      closeCart: () => dispatch({ type: "CLOSE_CART" }),
       totalQuantity,
       totalPrice,
-      toggleCart,
-      closeCart,
     }),
-    [state.cart, state.isCartOpen, addItem, removeItem, updateQuantity, clearCart, totalQuantity, totalPrice, toggleCart, closeCart]
+    [state.cart, state.isCartOpen, totalQuantity, totalPrice]
   );
 
   return (

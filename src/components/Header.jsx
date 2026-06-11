@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../CartContext";
+import { useFavorites } from "../FavoritesContext";
 
 function Header() {
   const [categories, setCategories] = useState([]);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const { toggleCart, totalQuantity } = useCart();
+  const { totalFavorites } = useFavorites();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -116,8 +118,8 @@ function Header() {
           </div>
 
           <div className="hidden min-[830px]:flex items-center gap-6 ml-auto">
-            <span className="cursor-pointer hover:text-slate-200 text-sm">
-              <Link to="login">Login</Link>
+            <span className="cursor-pointer hover:text-slate-200 text-sm whitespace-nowrap">
+              <Link to="favorites">{`Favorites (${totalFavorites})`}</Link>
             </span>
             <span
               className="cursor-pointer hover:text-slate-200 text-sm whitespace-nowrap"
@@ -147,7 +149,7 @@ function Header() {
               className="cursor-pointer text-gray-800 hover:text-gray-700"
               onClick={closeMenu}
             >
-              <Link to="login">Login</Link>
+              <Link to="favorites">{`Favorites (${totalFavorites})`}</Link>
             </span>
             <span
               className="cursor-pointer text-gray-800 hover:text-gray-700"

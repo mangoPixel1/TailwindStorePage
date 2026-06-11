@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import StarRating from "../StarRating";
 import { useCart } from "../../CartContext";
+import HeartButton from "../HeartButton";
 
 function ProductPage() {
   let { product } = useParams();
@@ -139,14 +140,14 @@ function ProductPage() {
                 <p className="text-sm text-gray-600 my-5">
                   {productData.description}
                 </p>
-                <div>
+                <div className="flex items-center gap-3">
                   <input
                     type="number"
                     min={1}
                     max={99}
                     value={selectedQuantity}
                     onChange={(e) => setSelectedQuantity(e.target.value)}
-                    className="pl-5 py-1 mr-3 border border-gray-300 rounded-none"
+                    className="pl-5 py-1 border border-gray-300 rounded-none"
                   />
                   <button
                     className="px-3 py-1 self-center rounded-sm text-slate-100 bg-slate-600 transition duration-350 hover:bg-slate-700 cursor-pointer"
@@ -154,6 +155,7 @@ function ProductPage() {
                   >
                     Add to Cart
                   </button>
+                  <HeartButton product={productData} className="text-gray-400" />
                 </div>
                 <hr className="my-8 border-t border-slate-300" />
                 <div className="flex justify-center md:justify-start text-center md:text-left">

@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { CartProvider } from "./CartContext";
+import { FavoritesProvider } from "./FavoritesContext";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -24,6 +25,7 @@ const OrderConfirmation = lazy(() => import("./components/pages/OrderConfirmatio
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
+      <FavoritesProvider>
       <CartProvider>
         <CartDrawerWrapper />
         <Suspense fallback={null}>
@@ -45,6 +47,7 @@ function App() {
           </Routes>
         </Suspense>
       </CartProvider>
+      </FavoritesProvider>
     </div>
   );
 }

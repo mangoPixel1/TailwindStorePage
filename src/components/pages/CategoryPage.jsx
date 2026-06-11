@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import StarRating from "../StarRating";
+import HeartButton from "../HeartButton";
 
 function ProductCardSkeleton() {
   return (
@@ -74,13 +75,19 @@ function Category() {
                 ))
               : products.map((product) => (
                   <div key={product.id}>
-                    <div className="mb-5 aspect-square bg-white">
+                    <div className="mb-5 aspect-square bg-white relative">
                       <Link to={`/product/${product.id}`}>
                         <img
                           src={product.image}
                           className="w-full h-full object-contain"
                         />
                       </Link>
+                      <div className="absolute top-2 right-2">
+                        <HeartButton
+                          product={product}
+                          className="bg-white rounded-full p-1.5 shadow-sm text-gray-400"
+                        />
+                      </div>
                     </div>
 
                     <div className="flex flex-col">
